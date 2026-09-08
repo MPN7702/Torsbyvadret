@@ -164,9 +164,13 @@ def convert_smhi(smhi):
             d.get("probability_of_precipitation", 0)
         )
 
-        hourly["precipitation"].append(
-            d.get("precipitation_amount_mean", 0)
+                hourly["precipitation"].append(
+            d.get(
+                "precipitation_amount_mean_deterministic",
+                d.get("precipitation_amount_mean", 0)
+            )
         )
+
 
         hourly["weathercode"].append(
             weathercode_from_smhi(
@@ -174,7 +178,9 @@ def convert_smhi(smhi):
             )
         )
 
-    return {
+        return {
+        "latitude": smhi["geometry"]["coordinates"][1],
+        "longitude": smhi["geometry"]["coordinates"][0],
         "hourly": hourly
     }
 
