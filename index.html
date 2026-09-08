@@ -1759,8 +1759,9 @@ const windDirection =
 h.wind_direction_10m?.[idx] ?? 0;
 console.log(
     model.namn,
-    "dir:",
-    windDirection
+    "windDirection:",
+    windDirection,
+    getWindDirection(windDirection)
 );
 const pressure =
 h.surface_pressure?.[idx] ?? "-";
