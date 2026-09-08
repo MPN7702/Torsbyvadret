@@ -16,10 +16,8 @@ LOCATIONS = [
 ]
 
 OPENMETEO_MODELS = [
-    "icon_global",
     "icon_eu",
-    "dmi_seamless",
-    "best_match"
+    "dmi_seamless"
 ]
 
 
