@@ -264,9 +264,9 @@ def fetch_openmeteo(lat, lon, model):
         f"&longitude={lon}"
         f"&models={model}"
         "&hourly="
-"temperature_2m,"
-"pressure_msl,"
-"wind_speed_10m,"
+        "temperature_2m,"
+        "pressure_msl,"
+        "wind_speed_10m,"
         "wind_gusts_10m,"
         "wind_direction_10m,"
         "precipitation_probability,"
@@ -275,7 +275,7 @@ def fetch_openmeteo(lat, lon, model):
         "&forecast_days=7"
     )
 
-        data = fetch_json(url)
+    data = fetch_json(url)
 
     if "hourly" in data:
         data["hourly"]["surface_pressure"] = \
