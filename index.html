@@ -1930,10 +1930,10 @@ const rad =
     dir * Math.PI / 180;
 
 windX +=
-    -Math.sin(rad) * wind * weight;
+    Math.sin(rad) * wind * weight;
 
 windY +=
-    -Math.cos(rad) * wind * weight;
+    Math.cos(rad) * wind * weight;
 
 pressureSum +=
     (h.surface_pressure?.[idx] ?? 0) * weight;
