@@ -761,80 +761,67 @@ dayWinds.push(
     rainModelValues.push(dayRain);
 
 });
-const safeWindSpeed =
-    Number(windSpeed) || 1;
-const windDifferencePercent =
-(
-    (
-        Math.max(...windModelValues)
-        -
-        Math.min(...windModelValues)
-    )
-    /
-    safeWindSpeed
-)
-* 100;
+const windSpread =
+    Math.max(...windModelValues)
+    -
+    Math.min(...windModelValues);
 
-const rainDifferencePercent =
-(
-    (
-        Math.max(...rainModelValues)
-        -
-        Math.min(...rainModelValues)
-    )
-    /
-    Math.max(Number(rainAmount),3)
-)
-* 100;
+const rainSpread =
+    Math.max(...rainModelValues)
+    -
+    Math.min(...rainModelValues);
+
+const tempSpread =
+    Math.max(...maxTemps)
+    -
+    Math.min(...maxTemps);
+
 let confidenceText = "Hög";
 let confidenceClass = "conf-high";
 
 let confidenceSource = "";
-let windDisplayClass =
-    windClass;
+let windDisplayClass = windClass;
+let rainDisplayClass = rainAmountClass;
 
-let rainDisplayClass =
-    rainAmountClass;
-const largestDifference =
-Math.max(
-    windDifferencePercent,
-    rainDifferencePercent
-);
-
-if(largestDifference === windDifferencePercent){
-
-    confidenceSource = "wind";
-
-}else{
-
-    confidenceSource = "rain";
-
-}
-
-if(largestDifference > 40){
+if(
+    tempSpread > 5 ||
+    windSpread > 3 ||
+    rainSpread > 8
+){
 
     confidenceText = "Låg";
     confidenceClass = "conf-low";
 
 }
-else if(largestDifference >= 20){
+else if(
+    tempSpread > 3 ||
+    windSpread > 1.5 ||
+    rainSpread > 3
+){
 
     confidenceText = "Medel";
     confidenceClass = "conf-medium";
 
 }
+
+if(
+    windSpread >= tempSpread &&
+    windSpread >= rainSpread
+){
+    confidenceSource = "wind";
+}
+else{
+    confidenceSource = "rain";
+}
+
 if(confidenceText !== "Hög"){
 
     if(confidenceSource === "wind"){
-
         windDisplayClass = confidenceClass;
-
     }
 
     if(confidenceSource === "rain"){
-
         rainDisplayClass = confidenceClass;
-
     }
 
 }
