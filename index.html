@@ -697,8 +697,15 @@ if(Number(windSpeed) >= 10)
 
 else if(Number(windSpeed) >= 5)
     windClass = "wind-mid";
-if(!windGusts.length)
-    continue;
+const windGust =
+    windGusts.length
+        ? (
+            (
+                windGusts.reduce((a,b)=>a+b,0)
+                / windGusts.length
+            ) * WIND_FACTOR
+          ).toFixed(1)
+        : "--";
 
 const windGust =
 (
