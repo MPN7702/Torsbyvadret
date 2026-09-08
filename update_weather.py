@@ -171,9 +171,11 @@ def convert_smhi(smhi):
             )
         )
 
-        hourly["weathercode"].append(
-            weathercode_from_yr(symbol)
-        )
+hourly["weathercode"].append(
+    weathercode_from_smhi(
+        d.get("symbol_code", 4)
+    )
+)
 
     return {
         "latitude": yr.get("geometry", {}).get("coordinates", [None, None])[1],
