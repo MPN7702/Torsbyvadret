@@ -908,12 +908,26 @@ let weatherVotes = {};
 
 models.forEach(model => {
 
-    const code =
-        hourly.weathercode[h];
+    const hourly =
+        model.data?.hourly;
 
-    weatherVotes[code] =
-        (weatherVotes[code] ?? 0)
-        + (weights[model.model] ?? 0);
+    if (!hourly?.time || !hourly?.weathercode)
+        return;
+
+    for (let h = 0; h < hourly.time.length; h++) {
+
+        if (hourly.time[h].startsWith(currentDay)) {
+
+            const code =
+                hourly.weathercode[h];
+
+            weatherVotes[code] =
+                (weatherVotes[code] ?? 0)
+                + (weights[model.model] ?? 0);
+
+        }
+
+    }
 
 });
 
