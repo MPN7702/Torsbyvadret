@@ -717,13 +717,12 @@ let adjustedWind =
 if(model.model === "icon_eu")
     adjustedWind *= 0.5;
 
-if(model.model === "dmi_se*mless")
+if(model.model === "dmi_seamless")
     adjustedWind *= 0.5;
 
-*ayWinds.push(
-    adjustedWind * W*ND_FACTOR
+dayWinds.push(
+    adjustedWind * WIND_FACTOR
 );
-
             }
 
             dayRain +=
@@ -1695,9 +1694,6 @@ if(!model.data) return;
 
 const h = model.data.hourly;
 
-console.log(
-    model.namn,
-    h.wind_speed_10m?.[hour]
 );
 
 const temperature =
@@ -1893,9 +1889,7 @@ if(Number(avgTemp) <= -20)
     avgTempClass = "temp-cold";
 
 if(Number(avgTemp) >= 30)
-    avgTempClass = "temp-hot";
-   console.log("windSum =", windSum);
-console.log("weightSum =", weightSum); 
+    avgTempClass = "temp-hot"; 
 const avgWind =
     (windSum / weightSum).toFixed(1);
 let avgWindClass = "";
