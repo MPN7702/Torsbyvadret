@@ -602,8 +602,14 @@ models.forEach(model => {
 
         if (hourly.time[h].startsWith(currentDay)) {
 
-            const wind =
-                hourly.wind_speed_10m?.[h];
+let wind =
+    hourly.wind_speed_10m?.[h];
+
+if(model.model === "icon_eu")
+    wind *= 0.5;
+
+if(model.model === "dmi_seamless")
+    wind *= 0.5;
 
             const gust =
                 hourly.wind_gusts_10m?.[h];
@@ -705,9 +711,18 @@ models.forEach(model => {
 
             if(typeof hourly.wind_speed_10m?.[h] === "number"){
 
-                dayWinds.push(
-                    hourly.wind_speed_10m[h] * WIND_FACTOR
-                );
+let adjustedWind =
+    hourly.wind_speed_10m[h];
+
+if(model.model === "icon_eu")
+    adjustedWind *= 0.5;
+
+if(model.model === "dmi_se*mless")
+    adjustedWind *= 0.5;
+
+*ayWinds.push(
+    adjustedWind * W*ND_FACTOR
+);
 
             }
 
