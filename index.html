@@ -408,6 +408,8 @@ models.forEach(model => {
     }
 
 });
+if(!maxTemps.length || !minTemps.length)
+    continue;
 
 const maxTemp =
     (
@@ -434,11 +436,12 @@ if(Number(maxTemp) >= 30)
 
 let rainHours = [];
 
-if (!models[0]?.data?.hourly)
-    continue;
-
 const hourlyTimes =
-    models[0].data.hourly.time;
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time;
+
+if (!hourlyTimes)
+    continue;
 
 let rainTotals = [];
 
@@ -465,7 +468,8 @@ models.forEach(model => {
     rainTotals.push(modelRainSum);
 
 });
-
+if(!rainTotals.length)
+    continue;
 const rainAmount =
 (
     rainTotals.reduce(
@@ -747,7 +751,7 @@ const rainDifferencePercent =
         Math.min(...rainModelValues)
     )
     /
-    Math.max(Number(rainAmount),5)
+    Math.max(Number(rainAmount),3)
 )
 * 100;
 let confidenceText = "Hög";
@@ -817,7 +821,8 @@ models.forEach(model => {
     for (let h = 0; h < hourly.time.length; h++) {
 
         if (hourly.time[h].startsWith(currentDay)) {
-
+if(!pressures.length)
+    continue;
             const pressure =
                 hourly.surface_pressure[h];
 
@@ -931,7 +936,6 @@ const sortedWeatherCodes =
 
 const weatherCode =
     sortedWeatherCodes[0] ?? 0;
-
 const weatherMap = {
 
     0: "☀️ Klart",
