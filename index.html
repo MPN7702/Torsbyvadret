@@ -1689,8 +1689,17 @@ const temperature =
 h.temperature_2m?.[hour] ?? "-";
 
 
-const wind =
-((h.wind_speed_10m?.[hour] ?? 0) * WIND_FACTOR).toFixed(1);
+let wind =
+    h.wind_speed_10m?.[hour] ?? 0;
+
+if(model.model === "icon_eu")
+    wind *= 0.5;
+
+if(model.model === "dmi_seamless")
+    wind *= 0.5;
+
+wind =
+    (wind * WIND_FACTOR).toFixed(1);
     let windClass = "";
 
 if(Number(wind) >= 20)
