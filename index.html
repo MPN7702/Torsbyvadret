@@ -436,9 +436,9 @@ if(Number(maxTemp) >= 30)
 
 let rainHours = [];
 
-const forecastTime =
+const hourlyTimes =
     models.find(m => m.data?.hourly?.time)
-          ?.data.hourly.time?.[hour];
+          ?.data.hourly.time;
 
 if (!hourlyTimes)
     continue;
