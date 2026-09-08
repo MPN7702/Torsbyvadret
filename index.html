@@ -1922,7 +1922,10 @@ windSum +=
 
 const dir =
     h.wind_direction_10m?.[idx] ?? 0;
-
+console.log(
+    model.namn,
+    dir
+);
 const wind =
     (h.wind_speed_10m?.[idx] ?? 0) * WIND_FACTOR;
 
