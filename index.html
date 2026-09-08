@@ -761,7 +761,8 @@ dayWinds.push(
     rainModelValues.push(dayRain);
 
 });
-
+const safeWindSpeed =
+    Number(windSpeed) || 1;
 const windDifferencePercent =
 (
     (
@@ -770,7 +771,7 @@ const windDifferencePercent =
         Math.min(...windModelValues)
     )
     /
-    Math.max(Number(windSpeed),1)
+    safeWindSpeed
 )
 * 100;
 
