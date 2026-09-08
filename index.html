@@ -1694,22 +1694,16 @@ if(!model.data) return;
 
 const h = model.data.hourly;
 
-    console.log(
-8
-model.namn,
-9
-"Vind:",
-10
-h.wind_speed_10m?.[hour],
-11
-"Kastvind:",
-12
-h.wind_gusts_10m?.[hour]
-13
-);
+
 const temperature =
 h.temperature_2m?.[hour] ?? "-";
-
+console.log(
+    model.namn,
+    "Vind:",
+    h.wind_speed_10m?.[hour],
+    "Kastvind:",
+    h.wind_gusts_10m?.[hour]
+);
 
 let wind =
     h.wind_speed_10m?.[hour] ?? 0;
