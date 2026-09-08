@@ -1972,6 +1972,14 @@ console.log(
     "windY:",
     windY
 );
+    console.log(
+    "avgWindDirection:",
+    (
+        Math.atan2(windY, windX)
+        * 180 / Math.PI
+        + 360
+    ) % 360
+);
 const avgWindDirection =
 (
     Math.atan2(windY, windX)
