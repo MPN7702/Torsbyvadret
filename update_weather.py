@@ -160,7 +160,7 @@ def convert_smhi(smhi):
             d.get("wind_from_direction")
         )
 
-                    hourly["precipitation_probability"].append(
+        hourly["precipitation_probability"].append(
             d.get("probability_of_precipitation", 0)
         )
 
@@ -172,7 +172,7 @@ def convert_smhi(smhi):
         )
 
 
-                        hourly["weathercode"].append(
+        hourly["weathercode"].append(
             weathercode_from_smhi(
                 d.get("symbol_code", 4)
             )
@@ -223,7 +223,7 @@ def convert_yr(yr):
             inst.get("wind_from_direction")
         )
 
-                next1 = (
+        next1 = (
             row["data"].get("next_1_hours")
             or row["data"].get("next_6_hours")
             or row["data"].get("next_12_hours")
