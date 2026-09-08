@@ -172,14 +172,12 @@ def convert_smhi(smhi):
         )
 
         hourly["weathercode"].append(
-            weathercode_from_smhi(
-                d.get("symbol_code", 4)
-            )
+            weathercode_from_yr(symbol)
         )
 
     return {
-        "latitude": smhi.get("geometry", {}).get("coordinates", [None, None])[1],
-        "longitude": smhi.get("geometry", {}).get("coordinates", [None, None])[0],
+        "latitude": yr.get("geometry", {}).get("coordinates", [None, None])[1],
+        "longitude": yr.get("geometry", {}).get("coordinates", [None, None])[0],
         "hourly": hourly
     }
 
