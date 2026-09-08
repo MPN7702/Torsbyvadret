@@ -275,7 +275,13 @@ def fetch_openmeteo(lat, lon, model):
         "&forecast_days=7"
     )
 
-    return fetch_json(url)
+        data = fetch_json(url)
+
+    if "hourly" in data:
+        data["hourly"]["surface_pressure"] = \
+            data["hourly"].pop("pressure_msl", [])
+
+    return data
 
 
 def fetch_weekly(lat, lon):
