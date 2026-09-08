@@ -1833,8 +1833,17 @@ const weight =
 tempSum +=
     (h.temperature_2m?.[hour] ?? 0) * weight;
 
+let adjustedWind =
+    h.wind_speed_10m?.[hour] ?? 0;
+
+if(model.model === "icon_eu")
+    adjustedWind *= 0.5;
+
+if(model.model === "dmi_seamless")
+    adjustedWind *= 0.5;
+
 windSum +=
-    ((h.wind_speed_10m?.[hour] ?? 0) * WIND_FACTOR) * weight;
+    (adjustedWind * WIND_FACTOR) * weight;
 
 const dir =
     h.wind_direction_10m?.[hour] ?? 0;
