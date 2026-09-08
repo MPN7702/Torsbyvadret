@@ -1718,24 +1718,6 @@ const displayTime =
 
 const modelDateInfo =
     `📅 ${shortDate}<br>🕓 ${displayTime}`;
-const displayDate =
-    new Date(forecastTime)
-        .toLocaleDateString("sv-SE", {
-            weekday: "long",
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-        });
-
-const shortTime =
-    new Date(forecastTime)
-        .toLocaleTimeString("sv-SE", {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
-
-const modelHeaderText =
-    `${displayDate}<br>${shortTime}`;
 
 document.getElementById("currentHour").innerHTML =
 `Klockan: ${displayTime} (24-timmarsprognos)`;
