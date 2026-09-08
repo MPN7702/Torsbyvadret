@@ -675,8 +675,15 @@ windY +=
 
 });
 
-if(!windSpeeds.length)
-    continue;
+const windSpeed =
+    windSpeeds.length
+        ? (
+            (
+                windSpeeds.reduce((a,b)=>a+b,0)
+                / windSpeeds.length
+            ) * WIND_FACTOR
+          ).toFixed(1)
+        : "--";
 
 const windSpeed =
 (
