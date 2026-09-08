@@ -1987,7 +1987,7 @@ const avgWindDirection =
 (
     Math.atan2(windX, windY)
     * 180 / Math.PI
-    + 180
+    + 360
 ) % 360;
 
 if (isNaN(avgWindDirection))
