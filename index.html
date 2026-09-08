@@ -644,8 +644,14 @@ let wind =
                 const rad =
                     dir * Math.PI / 180;
 
-windX += -Math.sin(rad) * wind;
-windY += -Math.cos(rad) * wind;
+const weight =
+    weights[model.model] ?? 0;
+
+windX +=
+    -Math.sin(rad) * wind * weight;
+
+windY +=
+    -Math.cos(rad) * wind * weight;
             }
         }
     }
@@ -939,20 +945,31 @@ models.forEach(model => {
     if (!hourly?.time || !hourly?.weathercode)
         return;
 
-    for (let h = 0; h < hourly.time.length; h++) {
+    hourlyTimes.forEach(hourlyTime => {
 
-        if (hourly.time[h].startsWith(currentDay)) {
+        if(!hourlyTime.startsWith(currentDay))
+            return;
 
-            const code =
-                hourly.weathercode[h];
+        const idx =
+            getIndexForTime(
+                hourly,
+                hourlyTime
+            );
 
-            weatherVotes[code] =
-                (weatherVotes[code] ?? 0)
-                + (weights[model.model] ?? 0);
+        if(idx === -1)
+            return;
 
-        }
+        const code =
+            hourly.weathercode?.[idx];
 
-    }
+        if(code === undefined)
+            return;
+
+        weatherVotes[code] =
+            (weatherVotes[code] ?? 0)
+            + (weights[model.model] ?? 0);
+
+    });
 
 });
 
