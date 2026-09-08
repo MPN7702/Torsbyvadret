@@ -513,10 +513,11 @@ if (rain >= 0.1)
     supportWeight += weights[model.model] ?? 0;
 
     });
-    if (
-        hourlyTime.startsWith(currentDay) &&
-        supportWeight >= 0.50
-    ) {
+if (
+    hourlyTime.startsWith(currentDay) &&
+    supportWeight >= 0.40
+)
+{
 
         rainHours.push(
             hourlyTime.substring(11,16)
@@ -581,6 +582,11 @@ rainTimes =
     rainPeriods.length
         ? rainPeriods.join(", ")
         : "Inget regn";
+    if(
+    Number(rainAmount) > 0 &&
+    rainPeriods.length === 0
+){
+    rainTimes = "Osäker nederbörd";
 }
 let windSpeeds = [];
 let windGusts = [];
@@ -1021,14 +1027,21 @@ votes[code] =
     const topCode =
         Object.entries(votes)
             .sort((a,b)=>b[1]-a[1])[0]?.[0];
+if(topCode === undefined){
 
-    if(topCode !== undefined){
+    weatherDescriptions.push(
+        `${emoji} ${label}: Okänt väder`
+    );
 
-        weatherDescriptions.push(
-            `${emoji} ${label}: ${weatherMap[Number(topCode)]}`
-        );
+    return;
+}
+if(topCode !== undefined){
 
-    }
+    weatherDescriptions.push(
+        `${emoji} ${label}: ${
+            weatherMap[Number(topCode)] ?? "Okänt väder"
+        }`
+    );
 
 }
 
