@@ -1646,6 +1646,15 @@ function getScoreClass(score){
 
     return "score-low";
 }
+    function getIndexForTime(hourly, targetTime){
+
+    if(!hourly?.time)
+        return -1;
+
+    return hourly.time.findIndex(
+        t => t.substring(0,16) === targetTime.substring(0,16)
+    );
+}
 function showHour(hour){
 
 if(!models.some(m => m.data?.hourly))
@@ -1682,12 +1691,21 @@ if(!model.data) return;
 
 const h = model.data.hourly;
 
+const idx =
+    getIndexForTime(
+        h,
+        forecastTime
+    );
+
+if(idx === -1)
+    return;
 
 const temperature =
-h.temperature_2m?.[hour] ?? "-";
+h.temperature_2m?.[idx] ?? "-";
+
 
 let wind =
-    h.wind_speed_10m?.[hour] ?? 0;
+    h.wind_speed_10m?.[idx] ?? 0;
 wind =
     (wind * WIND_FACTOR).toFixed(1);
     let windClass = "";
@@ -1698,15 +1716,15 @@ if(Number(wind) >= 20)
 else if(Number(wind) >= 10)
     windClass = "wind-mid";
 const windDirection =
-h.wind_direction_10m?.[hour] ?? 0;
+h.wind_direction_10m?.[idx] ?? 0;
 
 const pressure =
-h.surface_pressure?.[hour] ?? "-";
+h.surface_pressure?.[idx] ?? "-";
 
 const rainAmount =
-    h.precipitation?.[hour] ?? 0;
+    h.precipitation?.[idx] ?? 0;
 const rainRisk =
-    h.precipitation_probability?.[hour] ?? 0;
+    h.precipitation_probability?.[idx] ?? 0;
 const thunderRisk =
 Math.min(Math.round(rainRisk * 0.6),100);
 
