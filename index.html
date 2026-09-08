@@ -1690,14 +1690,8 @@ models.forEach(model=>{
 if(!model.data) return;
 
 const h = model.data.hourly;
-const idx =
-    getIndexForTime(
-        h,
-        forecastTime
-    );
-
-if(idx === -1)
-    return;
+    
+const h = model.data.hourly;
 
 const idx =
     getIndexForTime(
@@ -1709,7 +1703,7 @@ if(idx === -1)
     return;
 
 const temperature =
-h.temperature_2m?.[idx] ?? "-";
+    h.temperature_2m?.[idx] ?? "-";
 
 
 let wind =
@@ -1842,7 +1836,15 @@ let weightSum = 0;
         if(!model.data) return;
 
         const h = model.data.hourly;
+const idx =
+    getIndexForTime(
+        h,
+        forecastTime
+    );
 
+if(idx === -1)
+    return;
+        
 const weight =
     weights[model.model] ?? 0;
 
