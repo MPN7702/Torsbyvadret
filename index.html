@@ -605,12 +605,6 @@ models.forEach(model => {
 let wind =
     hourly.wind_speed_10m?.[h];
 
-if(model.model === "icon_eu")
-    wind *= 0.5;
-
-if(model.model === "dmi_seamless")
-    wind *= 0.5;
-
             const gust =
                 hourly.wind_gusts_10m?.[h];
 
@@ -713,12 +707,6 @@ models.forEach(model => {
 
 let adjustedWind =
     hourly.wind_speed_10m[h];
-
-if(model.model === "icon_eu")
-    adjustedWind *= 0.5;
-
-if(model.model === "dmi_seamless")
-    adjustedWind *= 0.5;
 
 dayWinds.push(
     adjustedWind * WIND_FACTOR
@@ -1707,13 +1695,6 @@ console.log(
 
 let wind =
     h.wind_speed_10m?.[hour] ?? 0;
-
-if(model.model === "icon_eu")
-    wind *= 0.5;
-
-if(model.model === "dmi_seamless")
-    wind *= 0.5;
-
 wind =
     (wind * WIND_FACTOR).toFixed(1);
     let windClass = "";
@@ -1851,12 +1832,6 @@ tempSum +=
 
 let adjustedWind =
     h.wind_speed_10m?.[hour] ?? 0;
-
-if(model.model === "icon_eu")
-    adjustedWind *= 0.5;
-
-if(model.model === "dmi_seamless")
-    adjustedWind *= 0.5;
 
 windSum +=
     (adjustedWind * WIND_FACTOR) * weight;
