@@ -561,7 +561,17 @@ if(start === previous){
         `${start}-${previous}`
     );
 }
+rainTimes =
+    rainPeriods.length
+        ? rainPeriods.join(", ")
+        : "Inget regn";
 
+if(
+    Number(rainAmount) > 0 &&
+    rainPeriods.length === 0
+){
+    rainTimes = "Osäker nederbörd";
+}
             start = current;
             previous = current;
         }
@@ -578,16 +588,6 @@ if(start === previous){
     );
 }
 
-rainTimes =
-    rainPeriods.length
-        ? rainPeriods.join(", ")
-        : "Inget regn";
-    if(
-    Number(rainAmount) > 0 &&
-    rainPeriods.length === 0
-){
-    rainTimes = "Osäker nederbörd";
-}
 let windSpeeds = [];
 let windGusts = [];
 let windX = 0;
@@ -1042,6 +1042,8 @@ if(topCode !== undefined){
             weatherMap[Number(topCode)] ?? "Okänt väder"
         }`
     );
+
+}
 
 }
 
