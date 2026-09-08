@@ -506,8 +506,17 @@ for (let h = 0; h < hourlyTimes.length; h++) {
 
     models.forEach(model => {
 
-        const rain =
-            model.data?.hourly?.precipitation?.[h] ?? 0;
+const idx =
+    getIndexForTime(
+        model.data?.hourly,
+        hourlyTime
+    );
+
+if(idx === -1)
+    return;
+
+const rain =
+    model.data.hourly.precipitation?.[idx] ?? 0;
 
 if (rain >= 0.1)
     supportWeight += weights[model.model] ?? 0;
@@ -635,8 +644,8 @@ let wind =
                 const rad =
                     dir * Math.PI / 180;
 
-                windX += Math.cos(rad) * wind;
-                windY += Math.sin(rad) * wind;
+windX += -Math.sin(rad) * wind;
+windY += -Math.cos(rad) * wind;
             }
         }
     }
@@ -663,6 +672,12 @@ let wind =
 const windSpeed =
 (
     (
+if(!windSpeeds.length)
+    continue;
+
+const windSpeed =
+(
+    (
         windSpeeds.reduce((a,b)=>a+b,0)
         / windSpeeds.length
     ) * WIND_FACTOR
@@ -679,6 +694,9 @@ if(Number(windSpeed) >= 10)
 
 else if(Number(windSpeed) >= 5)
     windClass = "wind-mid";
+if(!windGusts.length)
+    continue;
+
 const windGust =
 (
     (
@@ -1010,8 +1028,17 @@ function getPeriodWeather(startHour,endHour,emoji,label){
 
         models.forEach(model => {
 
-            const code =
-                model.data?.hourly?.weathercode?.[h];
+const idx =
+    getIndexForTime(
+        model.data?.hourly,
+        hourlyTime
+    );
+
+if(idx === -1)
+    return;
+
+const code =
+    model.data.hourly.weathercode?.[idx];
 
             if(code !== undefined){
 
