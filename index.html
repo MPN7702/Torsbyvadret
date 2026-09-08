@@ -268,12 +268,10 @@ h1{
 
 <div class="container" id="modelsContainer" style="display:none;">
 
-    <div class="weather-box" id="box1"></div>
-    <div class="weather-box" id="box2"></div>
-    <div class="weather-box" id="box3"></div>
-    <div class="weather-box" id="box4"></div>
-    <div class="weather-box" id="box5"></div>
-    <div class="weather-box" id="box6"></div>
+<div class="weather-box" id="box1"></div>
+<div class="weather-box" id="box2"></div>
+<div class="weather-box" id="box3"></div>
+<div class="weather-box" id="box4"></div>
 
 </div>
 
@@ -286,7 +284,7 @@ h1{
     <div class="forecast-wrapper">
 
         <div id="weeklyForecast">
-            <h2>📅 Sammanvägd 7-dygnsprognos (6 vädermodeller)</h2>
+            <h2>📅 Sammanvägd 7-dygnsprognos (4 vädermodeller)</h2>
 
             <div id="forecastContent">
                 Hämtar prognos...
@@ -1533,10 +1531,8 @@ const weights = {
 
     icon_eu: 0.30,
     dmi_seamless: 0.25,
-    icon_global: 0.20,
-    best_match: 0.15,
-    gfs_global: 0.07,
-    gem_global: 0.03
+    smhi: 0.25,
+    yr: 0.20
 
 };
     const WIND_FACTOR = 0.3;
@@ -1545,38 +1541,26 @@ const models = [
 
 {
     id:"box1",
-    namn:"Data 1 = ICON Global",
-    model:"icon_global",
-    data:null
-},
-{
-    id:"box2",
-    namn:"Data 2 = GFS Global",
-    model:"gfs_global",
-    data:null
-},
-{
-    id:"box3",
-    namn:"Data 3 = GEM Global",
-    model:"gem_global",
-    data:null
-},
-{
-    id:"box4",
-    namn:"Data 4 = ICON EU",
+    namn:"🇩🇪 ICON EU",
     model:"icon_eu",
     data:null
 },
 {
-    id:"box5",
-    namn:"Data 5 = DMI Seamless",
+    id:"box2",
+    namn:"🇩🇰 DMI",
     model:"dmi_seamless",
     data:null
 },
 {
-    id:"box6",
-    namn:"Data 6 = Best Match",
-    model:"best_match",
+    id:"box3",
+    namn:"🇸🇪 SMHI",
+    model:"smhi",
+    data:null
+},
+{
+    id:"box4",
+    namn:"🇳🇴 YR",
+    model:"yr",
     data:null
 }
 
@@ -1920,7 +1904,7 @@ if(Number(avgRainAmount) >= 10)
 
 document.getElementById("box7").innerHTML = `
 
-<h2>📊 Sammanställd 24h-prognos (6 modeller)</h2>
+<h2>📊 Sammanställd 24h-prognos (4 modeller)</h2>
 
 <div style="
     margin-bottom:15px;
