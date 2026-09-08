@@ -685,9 +685,11 @@ const windSpeed =
           ).toFixed(1)
         : "--";
 
-windHistory.push(
-    Number(windSpeed)
-);
+if(windSpeed !== "--"){
+    windHistory.push(Number(windSpeed));
+}else{
+    windHistory.push(0);
+}
 
 let windClass = "";
 
