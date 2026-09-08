@@ -1674,17 +1674,6 @@ const displayTime =
 document.getElementById("currentHour").innerHTML =
 `Klockan: ${displayTime} (24-timmarsprognos)`;
 
-let temperatures = [];
-
-models.forEach(model=>{
-
-if(!model.data) return;
-temperatures.push(
-model.data.hourly.temperature_2m[hour]
-);
-
-})
-
 models.forEach(model=>{
 
 if(!model.data) return;
