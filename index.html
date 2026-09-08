@@ -12,7 +12,7 @@
     margin-left:auto;
     margin-right:auto;
     padding:15px;
-    font-size:16px;
+    font-size:16px;F
     line-height:1.6;
 
     background:#1e293b;
@@ -1003,8 +1003,10 @@ function getPeriodWeather(startHour,endHour,emoji,label){
 
             if(code !== undefined){
 
-                votes[code] =
-                    (votes[code] ?? 0) + 1;
+votes[code] =
+    (votes[code] ?? 0)
+    + (weights[model.model] ?? 0);
+
 
             }
 
