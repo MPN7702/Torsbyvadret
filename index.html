@@ -442,7 +442,6 @@ const hourlyTimes =
 
 if (!hourlyTimes)
     continue;
-``
 
 let rainTotals = [];
 
@@ -1771,8 +1770,12 @@ function updateAIBox(hour){
 if(!models.some(m => m.data?.hourly))
     return;
 
-    
-        models[0]?.data?.hourly?.time?.[hour];
+const forecastTime =
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time?.[hour];
+
+if(!forecastTime)
+    return;
 
 const displayTime =
     new Date(forecastTime)
