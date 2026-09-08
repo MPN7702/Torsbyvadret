@@ -124,17 +124,62 @@ def weathercode_from_smhi(symbol):
 
     def convert_smhi(smhi):
     hourly = {
-        ...
+        "time": [],
+        "temperature_2m": [],
+        "surface_pressure": [],
+        "wind_speed_10m": [],
+        "wind_gusts_10m": [],
+        "wind_direction_10m": [],
+        "precipitation_probability": [],
+        "precipitation": [],
+        "weathercode": []
     }
 
     for row in smhi["timeSeries"]:
         d = row["data"]
 
-        ...
+        hourly["time"].append(row["time"][:16])
+
+        hourly["temperature_2m"].append(
+            d.get("air_temperature")
+        )
+
+        hourly["surface_pressure"].append(
+            d.get("air_pressure_at_mean_sea_level")
+        )
+
+        hourly["wind_speed_10m"].append(
+            round(d.get("wind_speed", 0) * 3.6, 1)
+        )
+
+        hourly["wind_gusts_10m"].append(
+            round(d.get("wind_speed_of_gust", 0) * 3.6, 1)
+        )
+
+        hourly["wind_direction_10m"].append(
+            d.get("wind_from_direction")
+        )
+
+        hourly["precipitation_probability"].append(
+            d.get("probability_of_precipitation", 0)
+        )
+
+        hourly["precipitation"].append(
+            d.get(
+                "precipitation_amount_mean_deterministic",
+                d.get("precipitation_amount_mean", 0)
+            )
+        )
+
+        hourly["weathercode"].append(
+            weathercode_from_smhi(
+                d.get("symbol_code", 4)
+            )
+        )
 
     return {
-        "latitude": ...,
-        "longitude": ...,
+        "latitude": smhi.get("geometry", {}).get("coordinates", [None, None])[1],
+        "longitude": smhi.get("geometry", {}).get("coordinates", [None, None])[0],
         "hourly": hourly
     }
         "latitude": smhi.get("geometry", {}).get("coordinates", [None, None])[1],
