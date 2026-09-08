@@ -24,9 +24,17 @@ OPENMETEO_MODELS = [
 
 
 def fetch_json(url):
-    r = requests.get(url, timeout=60)
-    r.raise_for_status()
-    return r.json()
+    last_error = None
+
+    for _ in range(3):
+        try:
+            r = requests.get(url, timeout=120)
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last_error = e
+
+    raise last_error
 
 
 def weathercode_from_yr(symbol):
@@ -209,7 +217,12 @@ def convert_yr(yr):
             inst.get("wind_from_direction")
         )
 
-        next1 = row["data"].get("next_1_hours", {})
+        next1 = (
+    row["data"].get("next_1_hours")
+    or row["data"].get("next_6_hours")
+    or row["data"].get("next_12_hours")
+    or {}
+)
 
         hourly["precipitation_probability"].append(
             next1.get("details", {}).get(
@@ -234,9 +247,13 @@ def convert_yr(yr):
             weathercode_from_yr(symbol)
         )
 
-    return {
-        "hourly": hourly
-    }
+   return {
+    "latitude": smhi.get("geometry", {})
+        .get("coordinates", [None, None])[1],
+    "longitude": smhi.get("geometry", {})
+        .get("coordinates", [None, None])[0],
+    "hourly": hourly
+}
 
 
 def fetch_openmeteo(lat, lon, model):
