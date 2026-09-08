@@ -548,7 +548,7 @@ for (let h = 0; h < hourlyTimes.length; h++) {
         const rain =
             model.data?.hourly?.precipitation?.[h] ?? 0;
 
-if (rain >= 0.05)
+if (rain >= 0.1)
     supportWeight += weights[model.model] ?? 0;
 
     });
@@ -725,46 +725,73 @@ const windDirection =
     + 360
 ) % 360;
 
-const windDifferencePercent =
-Math.max(
-    Math.abs(iconWind - Number(windSpeed)),
-    Math.abs(dmiWind - Number(windSpeed))
-)
-/
-Math.max(Number(windSpeed),1)
-* 100;
-let iconRain = 0;
-let dmiRain = 0;
+let windModelValues = [];
+let rainModelValues = [];
 
 models.forEach(model => {
 
-    if(model.model === "icon_eu"){
+    const hourly = model.data?.hourly;
 
-        iconRain =
-            rainTotals[
-                models.indexOf(model)
-            ] ?? 0;
+    if(!hourly?.time)
+        return;
+
+    const dayWinds = [];
+    let dayRain = 0;
+
+    for(let h = 0; h < hourly.time.length; h++){
+
+        if(hourly.time[h].startsWith(currentDay)){
+
+            if(typeof hourly.wind_speed_10m?.[h] === "number"){
+
+                dayWinds.push(
+                    hourly.wind_speed_10m[h] * WIND_FACTOR
+                );
+
+            }
+
+            dayRain +=
+                hourly.precipitation?.[h] ?? 0;
+
+        }
 
     }
 
-    if(model.model === "dmi_seamless"){
+    if(dayWinds.length){
 
-        dmiRain =
-            rainTotals[
-                models.indexOf(model)
-            ] ?? 0;
+        windModelValues.push(
+            dayWinds.reduce((a,b)=>a+b,0)
+            / dayWinds.length
+        );
 
     }
+
+    rainModelValues.push(dayRain);
 
 });
 
-const rainDifferencePercent =
-Math.max(
-    Math.abs(iconRain - Number(rainAmount)),
-    Math.abs(dmiRain - Number(rainAmount))
+const windDifferencePercent =
+(
+    (
+        Math.max(...windModelValues)
+        -
+        Math.min(...windModelValues)
+    )
+    /
+    Math.max(Number(windSpeed),1)
 )
-/
-Math.max(Number(rainAmount),5)
+* 100;
+
+const rainDifferencePercent =
+(
+    (
+        Math.max(...rainModelValues)
+        -
+        Math.min(...rainModelValues)
+    )
+    /
+    Math.max(Number(rainAmount),5)
+)
 * 100;
 let confidenceText = "Hög";
 let confidenceClass = "conf-high";
@@ -791,13 +818,13 @@ if(largestDifference === windDifferencePercent){
 
 }
 
-if(largestDifference > 30){
+if(largestDifference > 40){
 
     confidenceText = "Låg";
     confidenceClass = "conf-low";
 
 }
-else if(largestDifference >= 15){
+else if(largestDifference >= 20){
 
     confidenceText = "Medel";
     confidenceClass = "conf-medium";
@@ -1535,7 +1562,7 @@ const weights = {
     yr: 0.40
 
 };
-    const WIND_FACTOR = 0.3;
+    const WIND_FACTOR = 1.0;
 
 const models = [
 
