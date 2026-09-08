@@ -473,50 +473,7 @@ const rainAmount =
         0
     ) / rainTotals.length
 ).toFixed(1);
-const iconEU =
-    models.find(m => m.model === "icon_eu");
 
-const dmi =
-    models.find(m => m.model === "dmi_seamless");
-
-let iconWinds = [];
-let dmiWinds = [];
-
-for(let h = 0; h < iconEU.data.hourly.time.length; h++){
-
-    if(iconEU.data.hourly.time[h].startsWith(currentDay)){
-
-        iconWinds.push(
-            iconEU.data.hourly.wind_speed_10m[h]
-        );
-
-    }
-
-}
-
-for(let h = 0; h < dmi.data.hourly.time.length; h++){
-
-    if(dmi.data.hourly.time[h].startsWith(currentDay)){
-
-        dmiWinds.push(
-            dmi.data.hourly.wind_speed_10m[h]
-        );
-
-    }
-
-}
-
-const iconWind =
-(
-    iconWinds.reduce((a,b)=>a+b,0)
-    / iconWinds.length
-) * WIND_FACTOR;
-
-const dmiWind =
-(
-    dmiWinds.reduce((a,b)=>a+b,0)
-    / dmiWinds.length
-) * WIND_FACTOR;
 let rainAmountClass = "rain-low";
 
 if(Number(rainAmount) > 0 &&
