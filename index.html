@@ -1961,7 +1961,12 @@ if(Number(avgWind) >= 10)
 
 else if(Number(avgWind) >= 5)
     avgWindClass = "wind-mid";
-
+console.log(
+    "windX:",
+    windX,
+    "windY:",
+    windY
+);
 const avgWindDirection =
 (
     Math.atan2(windY, windX)
