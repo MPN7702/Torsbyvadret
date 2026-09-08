@@ -122,14 +122,21 @@ def weathercode_from_smhi(symbol):
     return mapping.get(symbol, 3)
 
 
-def convert_smhi(smhi):
-        hourly["weathercode"].append(
-            weathercode_from_smhi(
-                d.get("symbol_code", 4)
-            )
-        )
+    def convert_smhi(smhi):
+    hourly = {
+        ...
+    }
+
+    for row in smhi["timeSeries"]:
+        d = row["data"]
+
+        ...
 
     return {
+        "latitude": ...,
+        "longitude": ...,
+        "hourly": hourly
+    }
         "latitude": smhi.get("geometry", {}).get("coordinates", [None, None])[1],
         "longitude": smhi.get("geometry", {}).get("coordinates", [None, None])[0],
         "hourly": hourly
