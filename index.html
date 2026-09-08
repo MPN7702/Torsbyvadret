@@ -1685,13 +1685,6 @@ const h = model.data.hourly;
 
 const temperature =
 h.temperature_2m?.[hour] ?? "-";
-console.log(
-    model.namn,
-    "Vind:",
-    h.wind_speed_10m?.[hour],
-    "Kastvind:",
-    h.wind_gusts_10m?.[hour]
-);
 
 let wind =
     h.wind_speed_10m?.[hour] ?? 0;
