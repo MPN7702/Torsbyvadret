@@ -160,11 +160,11 @@ def convert_smhi(smhi):
             d.get("wind_from_direction")
         )
 
-        hourly["precipitation_probability"].append(
+                hourly["precipitation_probability"].append(
             d.get("probability_of_precipitation", 0)
         )
 
-                hourly["precipitation"].append(
+        hourly["precipitation"].append(
             d.get(
                 "precipitation_amount_mean_deterministic",
                 d.get("precipitation_amount_mean", 0)
@@ -172,13 +172,13 @@ def convert_smhi(smhi):
         )
 
 
-        hourly["weathercode"].append(
+                hourly["weathercode"].append(
             weathercode_from_smhi(
                 d.get("symbol_code", 4)
             )
         )
 
-        return {
+    return {
         "latitude": smhi["geometry"]["coordinates"][1],
         "longitude": smhi["geometry"]["coordinates"][0],
         "hourly": hourly
@@ -258,7 +258,6 @@ def convert_yr(yr):
         "longitude": yr["geometry"]["coordinates"][0],
         "hourly": hourly
     }
-``
 
 
 def fetch_openmeteo(lat, lon, model):
