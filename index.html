@@ -436,9 +436,9 @@ if(Number(maxTemp) >= 30)
 
 let rainHours = [];
 
-const hourlyTimes =
+const forecastTime =
     models.find(m => m.data?.hourly?.time)
-          ?.data.hourly.time;
+          ?.data.hourly.time?.[hour];
 
 if (!hourlyTimes)
     continue;
@@ -1642,11 +1642,12 @@ function getScoreClass(score){
 }
 function showHour(hour){
 
-    if(!models[0]?.data?.hourly)
-        return;
+if(!models.some(m => m.data?.hourly))
+    return;
 
-    const forecastTime =
-        models[0]?.data?.hourly?.time?.[hour];
+const forecastTime =
+    models.find(m => m.data?.hourly?.time)
+          ?.data.hourly.time?.[hour];
 
 const displayTime =
     new Date(forecastTime)
@@ -1766,8 +1767,8 @@ updateAIBox(hour);
 
 function updateAIBox(hour){
 
-    if(!models[0]?.data?.hourly)
-        return;
+if(!models.some(m => m.data?.hourly))
+    return;
 
     const forecastTime =
         models[0]?.data?.hourly?.time?.[hour];
