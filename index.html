@@ -778,8 +778,6 @@ const tempSpread =
 
 let confidenceText = "Hög";
 let confidenceClass = "conf-high";
-
-let confidenceSource = "";
 let windDisplayClass = windClass;
 let rainDisplayClass = rainAmountClass;
 
@@ -803,26 +801,10 @@ else if(
     confidenceClass = "conf-medium";
 
 }
-
-if(
-    windSpread >= tempSpread &&
-    windSpread >= rainSpread
-){
-    confidenceSource = "wind";
-}
-else{
-    confidenceSource = "rain";
-}
-
 if(confidenceText !== "Hög"){
 
-    if(confidenceSource === "wind"){
-        windDisplayClass = confidenceClass;
-    }
-
-    if(confidenceSource === "rain"){
-        rainDisplayClass = confidenceClass;
-    }
+    windDisplayClass = confidenceClass;
+    rainDisplayClass = confidenceClass;
 
 }
 let pressures = [];
