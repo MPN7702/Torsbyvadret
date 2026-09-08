@@ -178,11 +178,11 @@ def convert_smhi(smhi):
             )
         )
 
-    return {
-        "latitude": smhi["geometry"]["coordinates"][1],
-        "longitude": smhi["geometry"]["coordinates"][0],
-        "hourly": hourly
-    }
+return {
+    "latitude": smhi.get("geometry", {}).get("coordinates", [None, None])[1],
+    "longitude": smhi.get("geometry", {}).get("coordinates", [None, None])[0],
+    "hourly": hourly
+}
 
 
 def convert_yr(yr):
@@ -253,11 +253,11 @@ def convert_yr(yr):
             weathercode_from_yr(symbol)
         )
 
-    return {
-        "latitude": yr["geometry"]["coordinates"][1],
-        "longitude": yr["geometry"]["coordinates"][0],
-        "hourly": hourly
-    }
+return {
+    "latitude": yr.get("geometry", {}).get("coordinates", [None, None])[1],
+    "longitude": yr.get("geometry", {}).get("coordinates", [None, None])[0],
+    "hourly": hourly
+}
 
 
 def fetch_openmeteo(lat, lon, model):
