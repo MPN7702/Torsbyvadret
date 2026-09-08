@@ -771,10 +771,20 @@ const rainSpread =
     -
     Math.min(...rainModelValues);
 
-const tempSpread =
+const maxTempSpread =
     Math.max(...maxTemps)
     -
     Math.min(...maxTemps);
+
+const minTempSpread =
+    Math.max(...minTemps)
+    -
+    Math.min(...minTemps);
+
+const tempSpread = Math.max(
+    maxTempSpread,
+    minTempSpread
+);
 
 let confidenceText = "Hög";
 let confidenceClass = "conf-high";
