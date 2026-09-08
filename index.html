@@ -1757,12 +1757,7 @@ else if(Number(wind) >= 10)
     windClass = "wind-mid";
 const windDirection =
 h.wind_direction_10m?.[idx] ?? 0;
-console.log(
-    model.namn,
-    "windDirection:",
-    windDirection,
-    getWindDirection(windDirection)
-);
+
 const pressure =
 h.surface_pressure?.[idx] ?? "-";
 
@@ -1922,10 +1917,6 @@ windSum +=
 
 const dir =
     h.wind_direction_10m?.[idx] ?? 0;
-console.log(
-    model.namn,
-    dir
-);
 const wind =
     (h.wind_speed_10m?.[idx] ?? 0) * WIND_FACTOR;
 
@@ -1969,20 +1960,7 @@ if(Number(avgWind) >= 10)
 
 else if(Number(avgWind) >= 5)
     avgWindClass = "wind-mid";
-console.log(
-    "windX:",
-    windX,
-    "windY:",
-    windY
-);
-    console.log(
-    "avgWindDirection:",
-    (
-        Math.atan2(windY, windX)
-        * 180 / Math.PI
-        + 360
-    ) % 360
-);
+
 const avgWindDirection =
 (
     Math.atan2(windX, windY)
