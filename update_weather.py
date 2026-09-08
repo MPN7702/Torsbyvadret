@@ -123,7 +123,6 @@ def weathercode_from_smhi(symbol):
 
 
 def convert_smhi(smhi):
-    ...
         hourly["weathercode"].append(
             weathercode_from_smhi(
                 d.get("symbol_code", 4)
