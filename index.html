@@ -821,8 +821,7 @@ models.forEach(model => {
     for (let h = 0; h < hourly.time.length; h++) {
 
         if (hourly.time[h].startsWith(currentDay)) {
-if(!pressures.length)
-    continue;
+
             const pressure =
                 hourly.surface_pressure[h];
 
@@ -850,7 +849,8 @@ if(!pressures.length)
     }
 
 });
-
+if(!pressures.length)
+    continue;
 const pressure =
     (
         pressures.reduce(
@@ -921,8 +921,9 @@ models.forEach(model => {
             const code =
                 hourly.weathercode[h];
 
-            weatherVotes[code] =
-                (weatherVotes[code] ?? 0) + 1;
+weatherVotes[code] =
+    (weatherVotes[code] ?? 0)
+    + (weights[model.model] ?? 0);
         }
     }
 
