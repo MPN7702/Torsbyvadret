@@ -685,14 +685,6 @@ const windSpeed =
           ).toFixed(1)
         : "--";
 
-const windSpeed =
-(
-    (
-        windSpeeds.reduce((a,b)=>a+b,0)
-        / windSpeeds.length
-    ) * WIND_FACTOR
-).toFixed(1);
-
 windHistory.push(
     Number(windSpeed)
 );
@@ -713,14 +705,6 @@ const windGust =
             ) * WIND_FACTOR
           ).toFixed(1)
         : "--";
-
-const windGust =
-(
-    (
-        windGusts.reduce((a,b)=>a+b,0)
-        / windGusts.length
-    ) * WIND_FACTOR
-).toFixed(1);
 
 const windDirection =
 (
