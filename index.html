@@ -1861,6 +1861,8 @@ if(Number(avgTemp) <= -20)
 
 if(Number(avgTemp) >= 30)
     avgTempClass = "temp-hot";
+   console.log("windSum =", windSum);
+console.log("weightSum =", weightSum); 
 const avgWind =
     (windSum / weightSum).toFixed(1);
 let avgWindClass = "";
