@@ -1717,7 +1717,10 @@ const displayTime =
         });
 
 const modelDateInfo =
-    `📅 ${shortDate}<br>🕓 ${displayTime}`;
+    `📅 ${
+        shortDate.charAt(0).toUpperCase() +
+        shortDate.slice(1)
+    }<br>🕓 ${displayTime}`;
 
 document.getElementById("currentHour").innerHTML =
 `Klockan: ${displayTime} (24-timmarsprognos)`;
@@ -1795,12 +1798,13 @@ box.innerHTML = `
         ${model.namn}
     </h2>
 
-    <div style="
-        text-align:right;
-        font-size:12px;
-        color:#93c5fd;
-        line-height:1.4;
-    ">
+<div style="
+    text-align:right;
+    font-size:12px;
+    color:#93c5fd;
+    line-height:1.4;
+    margin-left:15px;
+">
         ${modelDateInfo}
     </div>
 </div>
