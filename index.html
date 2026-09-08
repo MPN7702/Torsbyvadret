@@ -1645,9 +1645,6 @@ function getScoreClass(score){
     return "score-low";
 }
 function showHour(hour){
-console.log(
-    model.namn,
-    h.wind_speed_10m?.[hour]
 );
 
 if(!models.some(m => m.data?.hourly))
@@ -1684,6 +1681,10 @@ if(!model.data) return;
 
 const h = model.data.hourly;
 
+console.log(
+    model.namn,
+    h.wind_speed_10m?.[hour]
+);
 
 const temperature =
 h.temperature_2m?.[hour] ?? "-";
