@@ -1690,6 +1690,14 @@ models.forEach(model=>{
 if(!model.data) return;
 
 const h = model.data.hourly;
+const idx =
+    getIndexForTime(
+        h,
+        forecastTime
+    );
+
+if(idx === -1)
+    return;
 
 const idx =
     getIndexForTime(
@@ -1839,16 +1847,16 @@ const weight =
     weights[model.model] ?? 0;
 
 tempSum +=
-    (h.temperature_2m?.[hour] ?? 0) * weight;
+    (h.temperature_2m?.[idx] ?? 0) * weight;
 
 let adjustedWind =
-    h.wind_speed_10m?.[hour] ?? 0;
+    h.wind_speed_10m?.[idx] ?? 0;
 
 windSum +=
     (adjustedWind * WIND_FACTOR) * weight;
 
 const dir =
-    h.wind_direction_10m?.[hour] ?? 0;
+    h.wind_direction_10m?.[idx] ?? 0;
 
 const rad =
     dir * Math.PI / 180;
@@ -1860,10 +1868,10 @@ windY +=
     Math.sin(rad) * weight;
 
 pressureSum +=
-    (h.surface_pressure?.[hour] ?? 0) * weight;
+    (h.surface_pressure?.[idx] ?? 0) * weight;
 
 rainAmountSum +=
-    (h.precipitation?.[hour] ?? 0) * weight;
+    (h.precipitation?.[idx] ?? 0) * weight;
 
 weightSum += weight;
 
