@@ -1888,14 +1888,17 @@ windSum +=
 const dir =
     h.wind_direction_10m?.[idx] ?? 0;
 
+const wind =
+    (h.wind_speed_10m?.[idx] ?? 0) * WIND_FACTOR;
+
 const rad =
     dir * Math.PI / 180;
 
 windX +=
-    Math.cos(rad) * weight;
+    -Math.sin(rad) * wind * weight;
 
 windY +=
-    Math.sin(rad) * weight;
+    -Math.cos(rad) * wind * weight;
 
 pressureSum +=
     (h.surface_pressure?.[idx] ?? 0) * weight;
