@@ -2026,12 +2026,6 @@ const avgRainAmount =
     (rainAmountSum / weightSum).toFixed(1);
 let avgRainAmountClass = "rain-low";
 
-if(Number(avgRainAmount) > 0 &&
-   Number(avgRainAmount) < 2)
-{
-    avgRainAmountClass = "rain-green";
-}
-
 if(Number(avgRainAmount) >= 2 &&
    Number(avgRainAmount) < 10)
 {
