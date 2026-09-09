@@ -386,14 +386,26 @@ const dayDate =
 const currentDay =
     data.daily.time[i];
 const sunrise =
-    new Date(data.daily.sunrise[i])
+    data.daily.sunrise?.[i]
+        ? new Date(data.daily.sunrise[i])
+            .toLocaleTimeString("sv-SE",{
+                hour:"2-digit",
+                minute:"2-digit"
+            })
+        : "--:--";
     .toLocaleTimeString("sv-SE",{
         hour:"2-digit",
         minute:"2-digit"
     });
 
 const sunset =
-    new Date(data.daily.sunset[i])
+    data.daily.sunset?.[i]
+        ? new Date(data.daily.sunset[i])
+            .toLocaleTimeString("sv-SE",{
+                hour:"2-digit",
+                minute:"2-digit"
+            })
+        : "--:--";
     .toLocaleTimeString("sv-SE",{
         hour:"2-digit",
         minute:"2-digit"
