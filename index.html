@@ -943,17 +943,12 @@ if(i > 0){
         let stableWeather = false;
 
 if(i >= 2){
-console.log(
-    weekday,
-    pressureHistory[i],
-    pressureHistory[i - 1],
-    pressureHistory[i - 2]
 );
 const pressureStable =
     Math.abs(
         pressureHistory[i] -
         pressureHistory[i - 1]
-    ) <= 5 &&
+    ) <= 3 &&
     Math.abs(
         pressureHistory[i - 1] -
         pressureHistory[i - 2]
@@ -984,14 +979,6 @@ const pressureStable =
         tempStable &&
         windStable &&
         rainStable;
-console.log(
-    weekday,
-    pressureStable,
-    tempStable,
-    windStable,
-    rainStable,
-    stableWeather
-);
 }    
 let weatherVotes = {};
 
