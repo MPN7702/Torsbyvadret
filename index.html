@@ -1236,21 +1236,21 @@ else if(
 /* Lufttryck */
 
 if(Number(pressure) >= 995 && Number(pressure) <= 1015)
-    pikeScore += 1;
+    pikeScore += 2;
 
 if(Number(pressure) < 985)
-    pikeScore -= 1;
+    pikeScore -= 2;
 
 /* Mulet */
 
 if(weatherCode === 3)
-    pikeScore += 3;
+    pikeScore += 4;
 
 
 /* Delvis molnigt */
 
 if(weatherCode === 2)
-    pikeScore += 2;
+    pikeScore += 3;
 
 /* =======================
    ABBORRE
@@ -1258,7 +1258,7 @@ if(weatherCode === 2)
 /* Vattentemperatur Abborre */
 
 if(wt >= 15 && wt <= 22)
-    perchScore += 7;
+    perchScore += 6;
 
 else if(wt >= 12 && wt < 15)
     perchScore += 4;
