@@ -393,10 +393,6 @@ const sunrise =
                 minute:"2-digit"
             })
         : "--:--";
-    .toLocaleTimeString("sv-SE",{
-        hour:"2-digit",
-        minute:"2-digit"
-    });
 
 const sunset =
     data.daily.sunset?.[i]
@@ -406,10 +402,6 @@ const sunset =
                 minute:"2-digit"
             })
         : "--:--";
-    .toLocaleTimeString("sv-SE",{
-        hour:"2-digit",
-        minute:"2-digit"
-    });
 const forecastMonth =
     new Date(currentDay).getMonth() + 1;
 
