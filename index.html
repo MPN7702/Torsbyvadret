@@ -355,13 +355,12 @@ if(window.cachedWeather){
         await response.json();
 
     window.cachedWeather = cache;
-    console.log(window.cachedWeather.updated);
-    console.log(window.cachedWeather);
+
 }
 
 const data =
     cache?.[currentLocation]?.weekly;
-        console.log(Object.keys(data.daily));
+        
 if (!data || !data.daily)
     return;
 
@@ -387,14 +386,6 @@ const dayDate =
                 });
 const currentDay =
     data.daily.time[i];
-            console.log(
-    "sunrise",
-    data.daily.sunrise
-);
-
-console.log(
-    "sunset",
-    data.daily.sunset
 );
 const sunrise =
     new Date(data.daily.sunrise[i])
