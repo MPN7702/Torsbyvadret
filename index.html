@@ -943,7 +943,12 @@ if(i > 0){
         let stableWeather = false;
 
 if(i >= 2){
-
+console.log(
+    weekday,
+    pressureHistory[i],
+    pressureHistory[i - 1],
+    pressureHistory[i - 2]
+);
 const pressureStable =
     Math.abs(
         pressureHistory[i] -
