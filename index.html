@@ -815,8 +815,8 @@ let windFlag = "";
 let rainFlag = "";
 
 if(
-    tempSpread > 5 ||
-    windSpread > 4.0 ||
+    tempSpread > 6 ||
+    windSpread > 5.0 ||
     rainSpread > 8
 ){
 
@@ -824,7 +824,7 @@ if(
     confidenceClass = "conf-low";
     confidenceBoxClass = "conf-low-box";
 
-    if(tempSpread > 5){
+    if(tempSpread > 6){
         tempFlag =
             '<span class="conf-low-box">Låg</span>';
     }
@@ -841,8 +841,8 @@ if(
 
 }
 else if(
-    tempSpread > 3 ||
-    windSpread > 2.0 ||
+    tempSpread > 4 ||
+    windSpread > 3.0 ||
     rainSpread > 3
 ){
 
@@ -850,12 +850,12 @@ else if(
     confidenceClass = "conf-medium";
     confidenceBoxClass = "conf-medium-box";
 
-    if(tempSpread > 3){
+    if(tempSpread > 4){
         tempFlag =
             '<span class="conf-medium-box">Medel</span>';
     }
 
-    if(windSpread > 2.0){
+    if(windSpread > 3.0){
         windFlag =
             '<span class="conf-medium-box">Medel</span>';
     }
