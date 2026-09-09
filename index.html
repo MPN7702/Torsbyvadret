@@ -385,6 +385,15 @@ const dayDate =
                 });
 const currentDay =
     data.daily.time[i];
+            console.log(
+    "sunrise",
+    data.daily.sunrise
+);
+
+console.log(
+    "sunset",
+    data.daily.sunset
+);
 const sunrise =
     new Date(data.daily.sunrise[i])
     .toLocaleTimeString("sv-SE",{
