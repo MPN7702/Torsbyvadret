@@ -916,6 +916,21 @@ const pressure =
             pressureHistory.push(
     Number(pressure)
 );
+            let pressureTrend = "➡️";
+
+if(i > 0){
+
+    const diff =
+        Number(pressure)
+        -
+        pressureHistory[i - 1];
+
+    if(diff >= 2)
+        pressureTrend = "📈";
+
+    else if(diff <= -2)
+        pressureTrend = "📉";
+}
       rainHistory.push(
     Number(rainAmount)
 );      
@@ -1534,7 +1549,7 @@ ${windFlag}
 💨 Kastvind:
 <strong>${windGust} m/s</strong><br>
 📈 Lufttryck:
-<strong>${pressure} hPa</strong><br>
+<strong>${pressure} hPa ${pressureTrend}</strong><br>
 
 💧 Regnmängd:
 <span class="${rainDisplayClass}">
