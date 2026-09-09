@@ -1447,14 +1447,14 @@ ${waterTempText}
 
 🐊 Gädda:
 <span class="${getScoreClass(pikeScore)}">
-<b>${pikeScore} p</b>
+<b>${getFishingStars(pikeScore)}</b>
 </span>
 
 <br>
 
 🐟 Abborre:
 <span class="${getScoreClass(perchScore)}">
-<b>${perchScore} p</b>
+<b>${getFishingStars(perchScore)}</b>
 </span>
 
 <br>
@@ -1468,7 +1468,7 @@ ${waterTempText}
 <b>${
     zanderScore === -999
         ? "FREDAD"
-        : zanderScore + " p"
+        : getFishingStars(zanderScore)
 }</b>
 </span>
 
@@ -1500,17 +1500,17 @@ else{
     fishingText = `
     ${waterTempText}
 
-        🐊 Gädda:
-        <span class="${getScoreClass(pikeScore)}">
-        <b>${pikeScore} p</b>
-        </span>
+🐊 Gädda:
+<span class="${getScoreClass(pikeScore)}">
+<b>${getFishingStars(pikeScore)}</b>
+</span>
 
         <br>
 
-        🐟 Abborre:
-        <span class="${getScoreClass(perchScore)}">
-        <b>${perchScore} p</b>
-        </span>
+🐟 Abborre:
+<span class="${getScoreClass(perchScore)}">
+<b>${getFishingStars(perchScore)}</b>
+</span>
 
         <br>
 
@@ -1523,7 +1523,7 @@ else{
 <b>${
     zanderScore === -999
         ? "FREDAD"
-        : zanderScore + " p"
+        : getFishingStars(zanderScore)
 }</b>
 </span>
 
@@ -1776,6 +1776,22 @@ function getScoreClass(score){
         return "score-mid";
 
     return "score-low";
+}
+    function getFishingStars(score){
+
+    if(score >= 16)
+        return "★★★★★";
+
+    if(score >= 12)
+        return "★★★★☆";
+
+    if(score >= 8)
+        return "★★★☆☆";
+
+    if(score >= 4)
+        return "★★☆☆☆";
+
+    return "★☆☆☆☆";
 }
     function getIndexForTime(hourly, targetTime){
 
