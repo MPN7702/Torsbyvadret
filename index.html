@@ -386,22 +386,18 @@ const dayDate =
 const currentDay =
     data.daily.time[i];
 const sunrise =
-    data.daily.sunrise?.[i]
-        ? new Date(data.daily.sunrise[i])
-            .toLocaleTimeString("sv-SE",{
-                hour:"2-digit",
-                minute:"2-digit"
-            })
-        : "--:--";
+    new Date(data.daily.sunrise[i])
+    .toLocaleTimeString("sv-SE",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
 
 const sunset =
-    data.daily.sunset?.[i]
-        ? new Date(data.daily.sunset[i])
-            .toLocaleTimeString("sv-SE",{
-                hour:"2-digit",
-                minute:"2-digit"
-            })
-        : "--:--";
+    new Date(data.daily.sunset[i])
+    .toLocaleTimeString("sv-SE",{
+        hour:"2-digit",
+        minute:"2-digit"
+    });
 const forecastMonth =
     new Date(currentDay).getMonth() + 1;
 
