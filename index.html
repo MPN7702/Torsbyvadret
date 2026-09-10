@@ -814,7 +814,11 @@ const windSpread =
     Math.max(...windModelValues)
     -
     Math.min(...windModelValues);
+const windMin =
+    Math.min(...windModelValues).toFixed(1);
 
+const windMax =
+    Math.max(...windModelValues).toFixed(1);
 const rainSpread =
     Math.max(...rainModelValues)
     -
@@ -833,7 +837,11 @@ const minTempSpread =
     Math.max(...minTemps)
     -
     Math.min(...minTemps);
+const tempMinSpan =
+    Math.min(...minTemps).toFixed(1);
 
+const tempMaxSpan =
+    Math.max(...maxTemps).toFixed(1);
 const tempSpread = Math.max(
     maxTempSpread,
     minTempSpread
@@ -1671,6 +1679,11 @@ ${weekday} ${dayDate}
 <strong>${minTemp}°C till ${maxTemp}°C</strong>
 </span>
 ${tempFlag}
+
+${tempFlag
+    ? ` (spann: ${tempMinSpan}–${tempMaxSpan}°C)`
+    : ""}
+
 <br>
 🌬️ Medelvind:
 <span class="${windDisplayClass}">
@@ -1680,7 +1693,9 @@ ${getWindArrow(windDirection)}
 ${getWindDirection(windDirection)}
 </strong>
 </span>
-${windFlag}
+${windFlag
+    ? ` (spann: ${windMin}–${windMax} m/s)`
+    : ""}
 
 
 💨 Kastvind:
