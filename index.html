@@ -1241,16 +1241,16 @@ if(Number(pressure) >= 995 && Number(pressure) <= 1015)
 if(Number(pressure) < 985)
     pikeScore -= 2;
 
-/* Mulet */
+/* Molnighet Gädda */
 
-if(weatherCode === 3)
-    pikeScore += 4;
+if(weatherCode === 1)
+    pikeScore += 1; // Mest klart
 
+else if(weatherCode === 2)
+    pikeScore += 2; // Delvis molnigt
 
-/* Delvis molnigt */
-
-if(weatherCode === 2)
-    pikeScore += 2;
+else if(weatherCode === 3)
+    pikeScore += 3; // Mulet
 /* Vind Gädda */
 
 if(Number(windSpeed) < 1)
