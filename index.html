@@ -1223,19 +1223,17 @@ if(
 }
 
 else if(
-    forecastMonth >= 9 &&
-    forecastMonth <= 11
-)
+if(forecastMonth === 9)
 {
-    pikeScore += 5;
+    pikeScore += 3;
 }
 
 else if(
-    forecastMonth >= 12 ||
-    forecastMonth <= 2
+    forecastMonth === 10 ||
+    forecastMonth === 11
 )
 {
-    pikeScore -= 3;
+    pikeScore += 5;
 }
 
 
