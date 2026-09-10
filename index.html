@@ -1251,7 +1251,22 @@ if(weatherCode === 3)
 
 if(weatherCode === 2)
     pikeScore += 2;
+/* Vind Gädda */
 
+if(Number(windSpeed) < 1)
+    pikeScore -= 2;
+
+else if(Number(windSpeed) >= 1 &&
+        Number(windSpeed) < 3)
+    pikeScore += 1;
+
+else if(Number(windSpeed) >= 3 &&
+        Number(windSpeed) <= 6)
+    pikeScore += 3;
+
+else if(Number(windSpeed) > 6 &&
+        Number(windSpeed) <= 8)
+    pikeScore += 2;
 /* =======================
    ABBORRE
 ======================= */
@@ -1310,7 +1325,18 @@ else if(weatherCode === 2)
 
 else if(weatherCode === 3)
     perchScore += 3;     // Mulet
+/* Vind Abborre */
 
+if(Number(windSpeed) < 1)
+    perchScore -= 2;
+
+else if(Number(windSpeed) >= 2 &&
+        Number(windSpeed) <= 5)
+    perchScore += 2;
+
+else if(Number(windSpeed) > 5 &&
+        Number(windSpeed) <= 8)
+    perchScore += 1;
 /* =======================
    GÖS
 ======================= */
@@ -1370,7 +1396,14 @@ if(weatherCode === 2)
 
 if(weatherCode === 3)
     zanderScore += 3;
+/* Vind Gös */
 
+if(Number(windSpeed) < 1)
+    zanderScore -= 1;
+
+else if(Number(windSpeed) >= 2 &&
+        Number(windSpeed) <= 5)
+    zanderScore += 1;
 /* Fredningstid gös i Fryken 15 maj till 15 juni */
 
 const dayOfMonth =
