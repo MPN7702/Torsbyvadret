@@ -1222,8 +1222,7 @@ if(
     pikeScore += 4;
 }
 
-else if(
-if(forecastMonth === 9)
+else if(forecastMonth === 9)
 {
     pikeScore += 3;
 }
@@ -1236,6 +1235,13 @@ else if(
     pikeScore += 5;
 }
 
+else if(
+    forecastMonth >= 12 ||
+    forecastMonth <= 2
+)
+{
+    pikeScore -= 3;
+}
 
 /* Lufttryck */
 
