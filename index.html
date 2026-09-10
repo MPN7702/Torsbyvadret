@@ -93,6 +93,12 @@ h1{
     text-align:center;
 }
 #box7,
+#fishingAI{
+    text-align:center;
+}
+
+#box7,
+#fishingAI,
 #weeklyForecast{
     width:40%;
     box-sizing:border-box;
@@ -232,9 +238,10 @@ h1{
         max-width:400px;
     }
 
-    #box7{
-        width:95%;
-    }
+#box7,
+#fishingAI{
+    width:95%;
+}
 
     .forecast-wrapper{
         display:block;
@@ -298,11 +305,16 @@ h1{
 
 <div class="bottom-container">
 
-    <div class="weather-box" id="box7">
-        AI analyserar...
-    </div>
+<div class="weather-box" id="box7">
+    AI analyserar...
+</div>
 
-    <div class="forecast-wrapper">
+<div class="weather-box" id="fishingAI">
+    🎣 AI analyserar fisket...
+</div>
+
+<div class="forecast-wrapper">
+
 
         <div id="weeklyForecast">
             <h2>📅 Sammanvägd 7-dygnsprognos (4 vädermodeller)</h2>
@@ -372,6 +384,17 @@ if (!data || !data.daily)
 let tempHistory = [];
 let windHistory = [];
 let rainHistory = [];
+        let weekPike = [];
+let weekPerch = [];
+let weekZander = [];
+
+let bestPikeDay = "";
+let bestPerchDay = "";
+let bestZanderDay = "";
+
+let bestPikeScore = -999;
+let bestPerchScore = -999;
+let bestZanderScore = -999;
         for (let i = 0; i < 7; i++) {
 
 const date =
@@ -1458,6 +1481,33 @@ if(stableWeather){
 }
 
 }
+            weekPike.push(pikeScore);
+weekPerch.push(perchScore);
+
+if(zanderScore !== -999){
+    weekZander.push(zanderScore);
+}
+
+if(pikeScore > bestPikeScore){
+
+    bestPikeScore = pikeScore;
+    bestPikeDay = weekday;
+
+}
+
+if(perchScore > bestPerchScore){
+
+    bestPerchScore = perchScore;
+    bestPerchDay = weekday;
+
+}
+
+if(zanderScore > bestZanderScore){
+
+    bestZanderScore = zanderScore;
+    bestZanderDay = weekday;
+
+}
 let bestFish = "Gädda";
 let bestScore = pikeScore;
 
@@ -1664,8 +1714,56 @@ ${fishingText}
                 </div>
             `;
         }
+        const avgPike =
+    weekPike.reduce((a,b)=>a+b,0) /
+    weekPike.length;
+
+const avgPerch =
+    weekPerch.reduce((a,b)=>a+b,0) /
+    weekPerch.length;
+
+const avgZander =
+    weekZander.length
+        ? weekZander.reduce((a,b)=>a+b,0) /
+          weekZander.length
+        : 0;
+
+let aiText = "";
+
+if(
+    avgPerch > avgPike &&
+    avgPerch > avgZander
+){
+
+    aiText +=
+    "🐟 Abborren ser ut att vara den mest aktiva arten under veckan.<br><br>";
+
+}
+
+if(bestZanderScore >= 13){
+
+    aiText +=
+    `🐟 Gösen kan vara extra aktiv ${bestZanderDay} tack vare gynnsamma väderförhållanden.<br><br>`;
+
+}
+
+if(bestPikeScore < 16){
+
+    aiText +=
+    "🐊 Gäddfisket ser jämnt ut men några tydliga toppdagar syns inte ännu.<br><br>";
+
+}
+
+aiText +=
+`🏆 Bästa gädddag: ${bestPikeDay}<br>
+🏆 Bästa abborrdag: ${bestPerchDay}<br>
+🏆 Bästa gösdag: ${bestZanderDay}`;
         document.getElementById("forecastContent").innerHTML =
             html;
+        document.getElementById("fishingAI").innerHTML = `
+<h2>🎣 AI-bedömning fiske 7 dagar fram</h2>
+${aiText}
+`;
 
     } catch (error) {
 
