@@ -819,7 +819,11 @@ const rainSpread =
     Math.max(...rainModelValues)
     -
     Math.min(...rainModelValues);
+const rainMin =
+    Math.min(...rainModelValues).toFixed(1);
 
+const rainMax =
+    Math.max(...rainModelValues).toFixed(1);
 const maxTempSpread =
     Math.max(...maxTemps)
     -
@@ -1689,7 +1693,13 @@ ${windFlag}
 <strong>${rainAmount} mm</strong>
 </span>
 ${rainFlag}
+
+${rainFlag
+    ? ` (spann: ${rainMin}–${rainMax} mm)`
+    : ""}
+
 <br>
+
 
 🌧️ Regntider:
 <strong>${rainTimes}</strong>
