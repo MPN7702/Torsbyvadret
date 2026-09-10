@@ -1248,7 +1248,7 @@ else if(
 
 /* Lufttryck */
 
-if(Number(pressure) >= 995 && Number(pressure) <= 1015)
+if(Number(pressure) >= 995 && Number(pressure) <= 1010)
     pikeScore += 2;
 
 if(Number(pressure) < 985)
@@ -1263,7 +1263,7 @@ else if(weatherCode === 2)
     pikeScore += 2; // Delvis molnigt
 
 else if(weatherCode === 3)
-    pikeScore += 3; // Mulet
+    pikeScore += 2; // Mulet
 /* Vind Gädda */
 
 if(Number(windSpeed) < 1)
@@ -1389,7 +1389,21 @@ if(Number(pressure) >= 995 && Number(pressure) <= 1010)
 
 else if(Number(pressure) < 990)
     zanderScore -= 2;
+/* Fallande lufttryck gynnar gös */
 
+if(i > 0){
+
+    const pressureDiff =
+        Number(pressure) -
+        pressureHistory[i - 1];
+
+    if(pressureDiff <= -4){
+
+        zanderScore += 1;
+
+    }
+
+}
 /* Klart väder */
 
 if(weatherCode === 0)
