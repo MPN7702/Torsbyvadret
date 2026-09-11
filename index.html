@@ -1560,51 +1560,51 @@ if(zanderScore > bestZanderScore){
     bestZanderDay = weekday;
 
 }
-            if(i === 0){
+const predictionData = {
 
-    window.todayFishingPrediction = {
+    datum: currentDay,
 
-        datum: currentDay,
+    weather: weatherMap[weatherCode],
 
-        weather:
-            weatherMap[weatherCode],
+    pressure: pressure,
 
-        pressure:
-            pressure,
+    wind: windSpeed,
 
-        wind:
-            windSpeed,
+    rain: rainAmount,
 
-        rain:
-            rainAmount,
+    waterTemp: window.waterTemp,
 
-        waterTemp:
-            window.waterTemp,
+    pikeScore: pikeScore,
 
-        pikeScore:
-            pikeScore,
+    perchScore: perchScore,
 
-        perchScore:
-            perchScore,
+    zanderScore: zanderScore,
 
-        zanderScore:
-            zanderScore,
+    confidence: confidenceText
 
-        confidence:
-            confidenceText
+};
 
-    };
-try {
+await setDoc(
+    doc(
+        db,
+        "predictions",
+        currentDay
+    ),
+    predictionData
+);
+if(i === 0){
 
-    await setDoc(
-        doc(
-            db,
-            "predictions",
-            currentDay
-        ),
-        window.todayFishingPrediction
+    window.todayFishingPrediction =
+        predictionData;
+
+    localStorage.setItem(
+        "latestFishingPrediction",
+        JSON.stringify(
+            predictionData
+        )
     );
 
+}
 } catch (e) {
 
     console.error("FIRESTORE FEL:", e);
