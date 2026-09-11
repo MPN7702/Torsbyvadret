@@ -77,7 +77,24 @@ button:hover{
     width:auto;
     margin-right:8px;
 }
+.size-group{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+    align-items:center;
+}
 
+.size-group label{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    margin:0;
+}
+
+.size-group input{
+    width:auto;
+    margin:0;
+}
 </style>
 </head>
 
@@ -104,60 +121,56 @@ button:hover{
 
 <label>Storlek gädda</label>
 
-<label>
-<input type="checkbox" class="pikeSize" value="Små">
- Små
-</label>
+<div class="size-group">
 
-<label>
-<input type="checkbox" class="pikeSize" value="Medel">
- Medel
-</label>
+<label><input type="checkbox" class="pikeSize" value="Små">Små</label>
 
-<label>
-<input type="checkbox" class="pikeSize" value="Stora">
- Stora
-</label>
+<label><input type="checkbox" class="pikeSize" value="Medel">Medel</label>
+
+<label><input type="checkbox" class="pikeSize" value="Stora">Stora</label>
+
+</div>
 
 <label>Abborrar</label>
 <input type="number" id="perch" value="0">
 
 <label>Storlek abborre</label>
 
+<div class="size-group">
+
 <label>
 <input type="checkbox" class="perchSize" value="Små">
- Små
+Små
 </label>
 
 <label>
 <input type="checkbox" class="perchSize" value="Medel">
- Medel
+Medel
 </label>
 
 <label>
 <input type="checkbox" class="perchSize" value="Stora">
- Stora
+Stora
 </label>
+
+</div>
+
+</div>
 
 <label>Gösar</label>
 <input type="number" id="zander" value="0">
 
 <label>Storlek gös</label>
 
-<label>
-<input type="checkbox" class="zanderSize" value="Små">
- Små
-</label>
+<div class="size-group">
 
-<label>
-<input type="checkbox" class="zanderSize" value="Medel">
- Medel
-</label>
+<label><input type="checkbox" class="zanderSize" value="Små">Små</label>
 
-<label>
-<input type="checkbox" class="zanderSize" value="Stora">
- Stora
-</label>
+<label><input type="checkbox" class="zanderSize" value="Medel">Medel</label>
+
+<label><input type="checkbox" class="zanderSize" value="Stora">Stora</label>
+
+</div>
 
 <label>Fiskesätt</label>
 
