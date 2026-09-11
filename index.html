@@ -1564,7 +1564,14 @@ if(zanderScore > bestZanderScore){
             confidenceText
 
     };
-
+await setDoc(
+    doc(
+        db,
+        "predictions",
+        currentDay
+    ),
+    window.todayFishingPrediction
+);
     localStorage.setItem(
         "latestFishingPrediction",
         JSON.stringify(
