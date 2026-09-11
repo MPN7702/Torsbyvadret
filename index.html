@@ -1560,39 +1560,56 @@ if(zanderScore > bestZanderScore){
     bestZanderDay = weekday;
 
 }
-const predictionData = {
-
-    datum: currentDay,
-    weather: weatherMap[weatherCode],
-    pressure: pressure,
-    wind: windSpeed,
-    rain: rainAmount,
-    waterTemp: window.waterTemp,
-    pikeScore: pikeScore,
-    perchScore: perchScore,
-    zanderScore: zanderScore,
-    confidence: confidenceText
-
-};
-
-try {
-console.log("Sparar:", currentDay);
-    await setDoc(
-        doc(
-            db,
-            "predictions",
-            currentDay
-        ),
-        predictionData
-    );
-
-} catch (e) {
-
-    console.error("FIRESTORE FEL:", e);
-
-}
-
 if(i === 0){
+
+    const predictionData = {
+
+        datum: currentDay,
+
+        weather: weatherMap[weatherCode],
+
+        pressure: pressure,
+
+        wind: windSpeed,
+
+        rain: rainAmount,
+
+        waterTemp: window.waterTemp,
+
+        pikeScore: pikeScore,
+
+        perchScore: perchScore,
+
+        zanderScore: zanderScore,
+
+        confidence: confidenceText
+
+    };
+
+    try {
+
+        console.log(
+            "Sparar dagens prognos:",
+            currentDay
+        );
+
+        await setDoc(
+            doc(
+                db,
+                "predictions",
+                currentDay
+            ),
+            predictionData
+        );
+
+    } catch (e) {
+
+        console.error(
+            "FIRESTORE FEL:",
+            e
+        );
+
+    }
 
     window.todayFishingPrediction =
         predictionData;
