@@ -405,10 +405,12 @@ ${r.gos}
         Gös:
         ${r.prognos?.zanderScore ?? "-"}<br>
 
-        Lufttryck:
-        ${r.prognos?.pressure ?? "-"} hPa<br>
 Väder:
 ${r.prognos?.weather ?? "-"}<br>
+
+Lufttryck:
+${r.prognos?.pressure ?? "-"} hPa<br>
+
         Vind:
         ${r.prognos?.wind ?? "-"} m/s<br>
 
@@ -436,8 +438,16 @@ button.textContent =
 }
 
 
+const today = new Date();
+
+today.setMinutes(
+    today.getMinutes() -
+    today.getTimezoneOffset()
+);
+
 document.getElementById("date").value =
-    new Date().toISOString().split("T")[0];
+    today.toISOString().split("T")[0];
+
 
 </script>
 
