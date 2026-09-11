@@ -1563,35 +1563,35 @@ if(zanderScore > bestZanderScore){
 const predictionData = {
 
     datum: currentDay,
-
     weather: weatherMap[weatherCode],
-
     pressure: pressure,
-
     wind: windSpeed,
-
     rain: rainAmount,
-
     waterTemp: window.waterTemp,
-
     pikeScore: pikeScore,
-
     perchScore: perchScore,
-
     zanderScore: zanderScore,
-
     confidence: confidenceText
 
 };
 
-await setDoc(
-    doc(
-        db,
-        "predictions",
-        currentDay
-    ),
-    predictionData
-);
+try {
+
+    await setDoc(
+        doc(
+            db,
+            "predictions",
+            currentDay
+        ),
+        predictionData
+    );
+
+} catch (e) {
+
+    console.error("FIRESTORE FEL:", e);
+
+}
+
 if(i === 0){
 
     window.todayFishingPrediction =
