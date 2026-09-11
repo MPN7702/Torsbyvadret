@@ -149,6 +149,11 @@ button:hover{
 
 </select>
 
+<label>Annat fiskevatten (valfritt)</label>
+<input
+    type="text"
+    id="customPlace"
+    placeholder="Skriv fiskevatten här">
 
 <label>Starttid</label>
 <select id="startTime">
@@ -354,7 +359,9 @@ const zanderSizes =
             document.getElementById("date").value,
 
 fiskevatten:
-    document.getElementById("place").value,
+    document.getElementById("place").value === "Annat vatten"
+        ? document.getElementById("customPlace").value
+        : document.getElementById("place").value,
 
         startTid:
             document.getElementById("startTime").value,
