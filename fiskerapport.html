@@ -572,6 +572,19 @@ dateField.addEventListener("click", function(){
 });
 document.getElementById("date").value =
     today.toISOString().split("T")[0];
+
+const dateInput =
+    document.getElementById("date");
+
+dateInput.addEventListener("mousedown", (e) => {
+
+    if(dateInput.showPicker){
+        e.preventDefault();
+        dateInput.showPicker();
+    }
+
+});
+    
 for(let i = 0; i <= 50; i++){
 
     document.getElementById("pike").innerHTML +=
