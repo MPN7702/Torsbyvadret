@@ -23,6 +23,16 @@ body{
     border-radius:12px;
 }
 
+h1{
+    text-align:center;
+    color:#60a5fa;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+}
+
 input,
 select,
 textarea{
@@ -32,6 +42,11 @@ textarea{
     margin-bottom:15px;
     border-radius:8px;
     border:none;
+    box-sizing:border-box;
+}
+
+textarea{
+    min-height:100px;
 }
 
 button{
@@ -41,10 +56,21 @@ button{
     background:#22c55e;
     color:white;
     cursor:pointer;
+    margin-right:10px;
 }
 
 button:hover{
     background:#16a34a;
+}
+
+#reports{
+    margin-top:20px;
+}
+
+.report-card{
+    border-top:1px solid #475569;
+    padding-top:15px;
+    margin-top:15px;
 }
 
 </style>
@@ -63,7 +89,7 @@ button:hover{
 <input type="text" id="place">
 
 <label>Fisketid</label>
-<input type="text" id="time">
+<input type="text" id="time" placeholder="t.ex. 18:00-22:00">
 
 <label>Gäddor</label>
 <input type="number" id="pike" value="0">
@@ -78,7 +104,7 @@ button:hover{
 <select id="rating">
     <option>Mycket dåligt</option>
     <option>Dåligt</option>
-    <option>Normalt</option>
+    <option selected>Normalt</option>
     <option>Bra</option>
     <option>Mycket bra</option>
 </select>
@@ -87,76 +113,17 @@ button:hover{
 <textarea id="comment"></textarea>
 
 <button onclick="saveReport()">
-Spara rapport
+💾 Spara rapport
 </button>
-<br><br>
 
 <button onclick="showReports()">
 📊 Visa rapporter
 </button>
 
 <div id="reports"></div>
+
 </div>
-function showReports(){
 
-    const reports =
-        JSON.parse(
-            localStorage.getItem(
-                "fishingReports"
-            ) || "[]"
-        );
-
-    let html = "";
-
-    reports.reverse().forEach(r => {
-
-        html += `
-        <hr>
-
-        <b>${r.datum}</b><br>
-
-        Plats:
-        ${r.plats}<br>
-
-        Resultat:
-        Gädda ${r.gadda},
-        Abborre ${r.abborre},
-        Gös ${r.gos}<br>
-
-        Betyg:
-        ${r.betyg}<br>
-
-        Prognos gädda:
-        ${r.prognos?.pikeScore ?? "-"}<br>
-
-        Prognos abborre:
-        ${r.prognos?.perchScore ?? "-"}<br>
-
-        Prognos gös:
-        ${r.prognos?.zanderScore ?? "-"}<br>
-
-        Lufttryck:
-        ${r.prognos?.pressure ?? "-"}<br>
-
-        Vind:
-        ${r.prognos?.wind ?? "-"} m/s<br>
-
-        Regn:
-        ${r.prognos?.rain ?? "-"} mm<br>
-
-        Vattentemp:
-        ${r.prognos?.waterTemp ?? "-"} °C<br>
-
-        Kommentar:
-        ${r.kommentar}<br>
-        `;
-
-    });
-
-    document.getElementById("reports")
-        .innerHTML = html;
-
-}
 <script>
 
 function saveReport(){
@@ -200,7 +167,8 @@ function saveReport(){
         kommentar:
             document.getElementById("comment").value,
 
-        prognos: prediction
+        prognos:
+            prediction
 
     };
 
@@ -222,22 +190,82 @@ function saveReport(){
 
 }
 
-    let reports =
+function showReports(){
+
+    const reports =
         JSON.parse(
-            localStorage.getItem("fishingReports")
-            || "[]"
+            localStorage.getItem(
+                "fishingReports"
+            ) || "[]"
         );
 
-    reports.push(report);
+    let html = "";
 
-    localStorage.setItem(
-        "fishingReports",
-        JSON.stringify(reports)
-    );
+    reports.slice().reverse().forEach(r => {
 
-    alert("✅ Rapport sparad");
+        html += `
+        <div class="report-card">
+
+        <strong>${r.datum || "-"}</strong><br>
+
+        📍 Plats:
+        ${r.plats || "-"}<br>
+
+        🕓 Fisketid:
+        ${r.fisketid || "-"}<br><br>
+
+        🐊 Gädda:
+        ${r.gadda}<br>
+
+        🐟 Abborre:
+        ${r.abborre}<br>
+
+        🐟 Gös:
+        ${r.gos}<br><br>
+
+        🎣 Betyg:
+        ${r.betyg}<br><br>
+
+        <strong>Prognosdata</strong><br>
+
+        Gädda:
+        ${r.prognos?.pikeScore ?? "-"}<br>
+
+        Abborre:
+        ${r.prognos?.perchScore ?? "-"}<br>
+
+        Gös:
+        ${r.prognos?.zanderScore ?? "-"}<br>
+
+        Lufttryck:
+        ${r.prognos?.pressure ?? "-"} hPa<br>
+
+        Vind:
+        ${r.prognos?.wind ?? "-"} m/s<br>
+
+        Regn:
+        ${r.prognos?.rain ?? "-"} mm<br>
+
+        Vattentemperatur:
+        ${r.prognos?.waterTemp ?? "-"} °C<br>
+
+        Prognossäkerhet:
+        ${r.prognos?.confidence ?? "-"}<br><br>
+
+        📝 Kommentar:<br>
+        ${r.kommentar || "-"}<br>
+
+        </div>
+        `;
+
+    });
+
+    document.getElementById("reports").innerHTML = html;
 
 }
+
+document.getElementById("date").value =
+    new Date().toISOString().split("T")[0];
 
 </script>
 
