@@ -89,13 +89,11 @@ h1{
     transition:all .3s;
 }
 
-#box7,
-#fishingAI{
+#box7{
     text-align:center;
 }
 
 #box7,
-#fishingAI,
 #weeklyForecast{
     width:40%;
     box-sizing:border-box;
@@ -239,8 +237,7 @@ h1{
         max-width:400px;
     }
 
-#box7,
-#fishingAI{
+#box7{
     width:95%;
 }
 
@@ -1496,7 +1493,15 @@ if(stableWeather){
 }
 
 }
+let bestScore = pikeScore;
 
+if(perchScore > bestScore){
+    bestScore = perchScore;
+}
+
+if(zanderScore > bestScore){
+    bestScore = zanderScore;
+}
             const waterTemp = window.waterTemp ?? "--";
 
 const waterTempText = `
