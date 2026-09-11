@@ -1294,19 +1294,41 @@ else if(weatherCode === 3)
 /* Vind Gädda */
 
 if(Number(windSpeed) < 2)
-    pikeScore -= 2;
+    p*keScore -= 2;
 
-else if(Number(windSpeed) >= 2 &&
-        Number(windSpeed) < 4)
+else if(Number(wind*peed) >= 2 &&
+        Number(windS*eed) < 4)
+    pikeScore += 2*
+
+else if(Number(windSpeed) >= 4 &*
+        Number*windSpeed) <= 7)
+    pikeScore += *;
+
+else if(Number(windSpeed) > 7 &*
+        Number(windSpeed) <= 9)
+ *  pikeScore += 1;
+    /* Vindriktning Gädda */
+
+const windDir =
+    getWindDirection(windDirection);
+
+if(windDir === "SV")
     pikeScore += 3;
 
-else if(Number(windSpeed) >= 4 &&
-        Number(windSpeed) <= 7)
-    pikeScore += 4;
-
-else if(Number(windSpeed) > 7 &&
-        Number(windSpeed) <= 9)
+else if(windDir === "V")
     pikeScore += 2;
+
+else if(windDir === "S")
+    pikeScore += 2;
+
+else if(windDir === "NV")
+    pikeScore += 1;
+
+else if(windDir === "Ö")
+    pikeScore -= 1;
+
+else if(windDir === "NO")
+    pikeScore -= 2;
 /* =======================
    ABBORRE
 ======================= */
@@ -1368,18 +1390,40 @@ else if(weatherCode === 3)
 /* Vind Abborre */
 
 if(Number(windSpeed) < 2)
-    perchScore -= 2;
+    p*rchScore -= 2;
 
-else if(Number(windSpeed) >= 2 &&
-        Number(windSpeed) < 4)
+else if(Number(win*Speed) >= 2 &&
+        Number(wind*peed) < 4)
+    perchScore += 2;
+
+e*se if(Number(windSpeed) >= 4 &&
+  *     Number(windSpeed) <= 7)
+    p*rchScore += 3;
+
+else if(Number(win*Speed) > 7 &&
+        Number(windS*eed) <= 9)
+    perchScore += 1;
+            /* Vindriktning Abborre */
+
+const perchWindDir =
+    getWindDirection(windDirection);
+
+if(perchWindDir === "SV")
     perchScore += 3;
 
-else if(Number(windSpeed) >= 4 &&
-        Number(windSpeed) <= 7)
-    perchScore += 4;
+else if(perchWindDir === "V")
+    perchScore += 2;
 
-else if(Number(windSpeed) > 7 &&
-        Number(windSpeed) <= 9)
+else if(perchWindDir === "S")
+    perchScore += 2;
+
+else if(perchWindDir === "SO")
+    perchScore += 2;
+
+else if(perchWindDir === "NV")
+    perchScore += 1;
+
+else if(perchWindDir === "N")
     perchScore += 1;
 /* =======================
    GÖS
@@ -1454,18 +1498,46 @@ if(weatherCode === 2)
 
 if(weatherCode === 3)
     zanderScore += 3;
-/* Vind Gös */
+/* Vin* Gös */
 
-if(Number(windSpeed) < 2)
+if(Number*windSpeed) < 2)
+    zanderScore -=*1;
+
+else if(Number(windSpeed) >= 2*&&
+        Number(windSpeed) < 5)
+*   zanderScore += 1;
+
+else if(Numb*r(windSpeed) >= 5 &&
+        Numbe*(windSpeed) <= 8)
+    z*nderScore += 2;
+            /* Vindriktning Gös */
+
+const zanderWindDir =
+    getWindDirection(windDirection);
+
+if(zanderWindDir === "SV")
+    zanderScore += 3;
+
+else if(zanderWindDir === "S")
+    zanderScore += 3;
+
+else if(zanderWindDir === "V")
+    zanderScore += 2;
+
+else if(zanderWindDir === "SO")
+    zanderScore += 2;
+
+else if(zanderWindDir === "NV")
+    zanderScore += 1;
+
+else if(zanderWindDir === "N")
+    zanderScore += 1;
+
+else if(zanderWindDir === "Ö")
     zanderScore -= 1;
 
-else if(Number(windSpeed) >= 2 &&
-        Number(windSpeed) < 5)
-    zanderScore += 2;
-
-else if(Number(windSpeed) >= 5 &&
-        Number(windSpeed) <= 8)
-    zanderScore += 2;
+else if(zanderWindDir === "NO")
+    zanderScore -= 2;
 /* Fredningstid gös i Fryken 15 maj till 15 juni */
 
 const dayOfMonth =
@@ -1562,7 +1634,8 @@ Stjärnor baseras på:
 📅 Årstid,
 📈 Lufttryck,
 ☁️ Molnighet,
-🌬️ Vindförhållanden,
+🌬️ Vindstyrka,
+🧭 Vindriktning,
 🌤️ Stabilt väder
 </small>
 `;
@@ -1618,7 +1691,8 @@ Stjärnor baseras på:
 📅 Årstid,
 📈 Lufttryck,
 ☁️ Molnighet,
-🌬️ Vindförhållanden,
+🌬️ Vindstyrka,
+🧭 Vindriktning,
 🌤️ Stabilt väder
 </small>
 `;
@@ -1660,6 +1734,12 @@ ${tempFlag
 ${windSpeed} m/s
 ${getWindArrow(windDirection)}
 ${getWindDirection(windDirection)}
+🧭 Vindriktning:
+<strong>
+${getWindDirection(windDirection)}
+</strong>
+<br>
+(${Math.round(windDirection)}°)
 </strong>
 </span>
 ${windFlag}
@@ -1869,13 +1949,13 @@ function getWindArrow(degrees) {
 
 function getScoreClass(score){
 
-    if(score >= 19)
+    if(score >= 20)
         return "score-best";
 
-    if(score >= 16)
+    if(score >= 17)
         return "score-good";
 
-    if(score >= 13)
+    if(score >= 14)
         return "score-mid";
 
     if(score >= 10)
@@ -1886,19 +1966,20 @@ function getScoreClass(score){
 
 function getFishingStars(score){
 
-    if(score >= 19)
+    if(score >= 20)
         return "★★★★★";
 
-    if(score >= 16)
+    if(score >= 17)
         return "★★★★";
 
-    if(score >= 13)
+    if(score >= 14)
         return "★★★";
 
     if(score >= 10)
         return "★★";
 
     return "★";
+}
 }
     function getIndexForTime(hourly, targetTime){
 
