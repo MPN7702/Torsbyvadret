@@ -351,9 +351,33 @@ onclick="window.open('fiskerapport.html','_blank')">🎣 Rapportera fiskepass</b
      alt="Besöksräknare"
      style="border:0;transform:scale(0.5);">
 </div>
- 
-<script>
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    setDoc
+}
+from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDJZ2AVFOmrJC6RbkiwglerTVsUJ1Dhqwk",
+    authDomain: "fryken-fiskerapporter.firebaseapp.com",
+    projectId: "fryken-fiskerapporter",
+    storageBucket: "fryken-fiskerapporter.firebasestorage.app",
+    messagingSenderId: "1039915615968",
+    appId: "1:1039915615968:web:059f48e50aef7c56bf3285"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 async function updateWeeklyForecast() {
+
 
     try {
 
