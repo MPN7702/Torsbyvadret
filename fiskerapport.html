@@ -261,26 +261,6 @@ Stora
 
 </div>
 
-<label style="margin-top:20px;">Fiskesätt</label>
-
-<div class="method-group">
-
-<label><input type="checkbox" class="method" value="Spinnfiske">Spinnfiske</label>
-
-<label><input type="checkbox" class="method" value="Jigg">Jigg</label>
-
-<label><input type="checkbox" class="method" value="Trolling">Trolling</label>
-
-<label><input type="checkbox" class="method" value="Mete">Mete</label>
-
-<label><input type="checkbox" class="method" value="Fluga">Fluga</label>
-
-<label><input type="checkbox" class="method" value="Vertikal">Vertikal</label>
-
-<label><input type="checkbox" class="method" value="Annat">Annat</label>
-
-</div>
-
 <label style="margin-top:20px;">Fiskeupplevelse</label>
 
 <select id="rating">
@@ -356,21 +336,6 @@ const prediction =
         selectedPlace
     ] || {};
 
-const methods =
-    Array.from(
-        document.querySelectorAll(".method:checked")
-    ).map(x => x.value);
-
-if(methods.length === 0){
-
-    alert(
-        "Välj minst ett fiskesätt innan rapporten sparas."
-    );
-
-    return;
-
-}
-
 const pikeSizes =
     Array.from(
         document.querySelectorAll(".pikeSize:checked")
@@ -399,8 +364,6 @@ fiskevatten:
         slutTid:
             document.getElementById("endTime").value,
 
-        fiskesatt:
-            methods,
 gaddaStorlek:
     pikeSizes,
 
@@ -486,9 +449,6 @@ ${r.fiskevatten || "-"}<br>
 
         🕓 Fisketid:
 ${r.startTid || "-"}:00 - ${r.slutTid || "-"}:00
-
-        🎣 Fiskesätt:
-        ${r.fiskesatt?.join(", ") || "-"}<br><br>
 
 🐊 Gädda:
 ${r.gadda}
