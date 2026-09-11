@@ -238,9 +238,34 @@ Stora
 
 </div>
 
-<script>
+<script type="module">
 
-function saveReport(){
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+    getFirestore,
+    collection,
+    addDoc,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDJZ2AVFOmrJC6RbkiwglerTVsUJ1Dhqwk",
+    authDomain: "fryken-fiskerapporter.firebaseapp.com",
+    projectId: "fryken-fiskerapporter",
+    storageBucket: "fryken-fiskerapporter.firebasestorage.app",
+    messagingSenderId: "1039915615968",
+    appId: "1:1039915615968:web:059f48e50aef7c56bf3285"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window.db = db;
+window.addDoc = addDoc;
+window.getDocs = getDocs;
+window.collection = collection;
+
+window.saveReport = async function(){
 
     const prediction =
         JSON.parse(
@@ -316,26 +341,17 @@ gosStorlek:
             prediction
     };
 
-    let reports =
-        JSON.parse(
-            localStorage.getItem(
-                "fishingReports"
-            ) || "[]"
-        );
-
-    reports.push(report);
-
-    localStorage.setItem(
-        "fishingReports",
-        JSON.stringify(reports)
-    );
+await addDoc(
+    collection(db, "reports"),
+    report
+);
 
     alert("✅ Rapport sparad");
 
 location.reload();
 }
 
-function showReports(){
+window.showReports = async function(){
 
     const reportsDiv =
         document.getElementById("reports");
@@ -354,12 +370,13 @@ function showReports(){
 
     }
 
-    const reports =
-        JSON.parse(
-            localStorage.getItem(
-                "fishingReports"
-            ) || "[]"
-        );
+const snapshot =
+    await getDocs(
+        collection(db, "reports")
+    );
+
+const reports =
+    snapshot.docs.map(doc => doc.data());
 
     let html = "";
 
