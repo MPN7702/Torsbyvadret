@@ -88,8 +88,11 @@ button:hover{
 <label>Plats</label>
 <input type="text" id="place">
 
-<label>Fisketid</label>
-<input type="text" id="time" placeholder="t.ex. 18:00-22:00">
+<label>Starttid</label>
+<input type="time" id="startTime">
+
+<label>Sluttid</label>
+<input type="time" id="endTime">
 
 <label>Gäddor</label>
 <input type="number" id="pike" value="0">
@@ -143,8 +146,12 @@ function saveReport(){
         plats:
             document.getElementById("place").value,
 
-        fisketid:
-            document.getElementById("time").value,
+startTid:
+    document.getElementById("startTime").value,
+
+slutTid:
+    document.getElementById("endTime").value,
+
 
         gadda:
             Number(
@@ -211,8 +218,8 @@ function showReports(){
         📍 Plats:
         ${r.plats || "-"}<br>
 
-        🕓 Fisketid:
-        ${r.fisketid || "-"}<br><br>
+🕓 Fisketid:
+${r.startTid || "-"} - ${r.slutTid || "-"}<br><br>
 
         🐊 Gädda:
         ${r.gadda}<br>
