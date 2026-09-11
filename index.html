@@ -194,8 +194,10 @@ h1{
     transition:all .2s;
     box-shadow:0 4px 12px rgba(0,0,0,.4);
 
-    width:260px;
+    height:48px;
+    line-height:24px;
 }
+
 
 .dashboard-button:hover{
     background:#334155;
@@ -288,16 +290,10 @@ h1{
 
 <div style="text-align:center;margin-bottom:20px;">
 <button id="toggleModels"
-        class="dashboard-button">
-    Visa prognosmodeller
-</button>
+class="dashboard-button">Visa prognosmodeller</button>
     <button
-    class="dashboard-button"
-    onclick="window.open('fiskerapport.html','_blank')">
-
-    🎣 Rapportera fiskepass
-
-</button>
+<button class="dashboard-button"
+onclick="window.open('fiskerapport.html','_blank')">🎣 Rapportera fiskepass</button>
 </div>
 
 <div class="container" id="modelsContainer" style="display:none;">
