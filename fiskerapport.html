@@ -231,6 +231,17 @@ function saveReport(){
 
 function showReports(){
 
+    const reportsDiv =
+        document.getElementById("reports");
+
+    if(reportsDiv.innerHTML.trim() !== ""){
+
+        reportsDiv.innerHTML = "";
+
+        return;
+
+    }
+
     const reports =
         JSON.parse(
             localStorage.getItem(
@@ -301,10 +312,13 @@ function showReports(){
         </div>
 
         `;
+
     });
 
-    document.getElementById("reports").innerHTML = html;
+    reportsDiv.innerHTML = html;
+
 }
+
 
 document.getElementById("date").value =
     new Date().toISOString().split("T")[0];
