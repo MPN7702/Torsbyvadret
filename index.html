@@ -1220,6 +1220,10 @@ let zanderScore = 0;
 
 if(fishingAllowed){
 const wt = Number(window.waterTemp);
+
+if(isNaN(wt)){
+    // ingen vattentemperatur tillgänglig
+}
 /* =======================
    GÄDDA
 ======================= */
