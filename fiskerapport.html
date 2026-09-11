@@ -353,10 +353,21 @@ const prediction =
         selectedPlace
     ] || {};
 
-    const methods =
-        Array.from(
-            document.querySelectorAll(".method:checked")
-        ).map(x => x.value);
+const methods =
+    Array.from(
+        document.querySelectorAll(".method:checked")
+    ).map(x => x.value);
+
+if(methods.length === 0){
+
+    alert(
+        "Välj minst ett fiskesätt innan rapporten sparas."
+    );
+
+    return;
+
+}
+
 const pikeSizes =
     Array.from(
         document.querySelectorAll(".pikeSize:checked")
