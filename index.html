@@ -1594,14 +1594,23 @@ if(zanderScore > bestZanderScore){
             confidenceText
 
     };
-await setDoc(
-    doc(
-        db,
-        "predictions",
-        currentDay
-    ),
-    window.todayFishingPrediction
-);
+try {
+
+    await setDoc(
+        doc(
+            db,
+            "predictions",
+            currentDay
+        ),
+        window.todayFishingPrediction
+    );
+
+} catch (e) {
+
+    console.error("FIRESTORE FEL:", e);
+
+}
+``
     localStorage.setItem(
         "latestFishingPrediction",
         JSON.stringify(
