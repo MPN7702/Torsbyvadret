@@ -146,8 +146,10 @@ button:hover{
 💾 Spara rapport
 </button>
 
-<button onclick="showReports()">
-📊 Visa rapporter
+<button
+    id="reportsButton"
+    onclick="showReports()">
+    📊 Visa rapporter
 </button>
 
 <div id="reports"></div>
@@ -234,9 +236,15 @@ function showReports(){
     const reportsDiv =
         document.getElementById("reports");
 
+    const button =
+        document.getElementById("reportsButton");
+
     if(reportsDiv.innerHTML.trim() !== ""){
 
         reportsDiv.innerHTML = "";
+
+        button.textContent =
+            "📊 Visa rapporter";
 
         return;
 
@@ -314,7 +322,8 @@ function showReports(){
         `;
 
     });
-
+button.textContent =
+    "❌ Dölj rapporter";
     reportsDiv.innerHTML = html;
 
 }
