@@ -365,6 +365,7 @@ from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 import {
     getFirestore,
     doc,
+    getDoc,
     setDoc
 }
 from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
@@ -1596,14 +1597,38 @@ const predictionData = {
             currentDay
         );
 
-        await setDoc(
-            doc(
-                db,
-                "predictions",
-                currentDay
-            ),
-            predictionData
-        );
+const predictionRef =
+    doc(
+        db,
+        "predictions",
+        currentDay
+    );
+
+const existingDoc =
+    await getDoc(
+        predictionRef
+    );
+
+if(!existingDoc.exists()){
+
+    console.log(
+        "Sparar dagens prognos:",
+        currentDay
+    );
+
+    await setDoc(
+        predictionRef,
+        predictionData
+    );
+
+}else{
+
+    console.log(
+        "Dagens prognos finns redan:",
+        currentDay
+    );
+
+}
 
     } catch (e) {
 
