@@ -552,7 +552,8 @@ today.setMinutes(
     today.getMinutes() -
     today.getTimezoneOffset()
 );
-    
+    document.getElementById("date").value =
+    today.toISOString().split("T")[0];
 for(let i = 0; i <= 50; i++){
 
     document.getElementById("pike").innerHTML +=
