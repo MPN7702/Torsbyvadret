@@ -359,30 +359,6 @@ onclick="window.open('fiskerapport.html','_blank')">
 </div>
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDJZ2AVFOmrJC6RbkiwglerTVsUJ1Dhqwk",
-    authDomain: "fryken-fiskerapporter.firebaseapp.com",
-    projectId: "fryken-fiskerapporter",
-    storageBucket: "fryken-fiskerapporter.firebasestorage.app",
-    messagingSenderId: "1039915615968",
-    appId: "1:1039915615968:web:059f48e50aef7c56bf3285"
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
 async function updateWeeklyForecast() {
 
 
@@ -1559,95 +1535,6 @@ if(zanderScore > bestZanderScore){
 
     bestZanderScore = zanderScore;
     bestZanderDay = weekday;
-
-}
-if(i === 0){
-
-const predictionData = {
-
-    datum: currentDay,
-
-    savedAt: new Date().toISOString(),
-
-    weather: weatherMap[weatherCode],
-
-    pressure: pressure,
-
-    wind: windSpeed,
-
-    rain: rainAmount,
-
-    waterTemp: window.waterTemp,
-
-    pikeScore: pikeScore,
-
-    perchScore: perchScore,
-
-    zanderScore: zanderScore,
-
-    confidence: confidenceText
-
-};
-``
-
-    try {
-
-        console.log(
-            "Sparar dagens prognos:",
-            currentDay
-        );
-
-const predictionRef =
-    doc(
-        db,
-        "predictions",
-        currentDay
-    );
-
-const existingDoc =
-    await getDoc(
-        predictionRef
-    );
-
-if(!existingDoc.exists()){
-
-    console.log(
-        "Sparar dagens prognos:",
-        currentDay
-    );
-
-    await setDoc(
-        predictionRef,
-        predictionData
-    );
-
-}else{
-
-    console.log(
-        "Dagens prognos finns redan:",
-        currentDay
-    );
-
-}
-
-    } catch (e) {
-
-        console.error(
-            "FIRESTORE FEL:",
-            e
-        );
-
-    }
-
-    window.todayFishingPrediction =
-        predictionData;
-
-    localStorage.setItem(
-        "latestFishingPrediction",
-        JSON.stringify(
-            predictionData
-        )
-    );
 
 }
 let bestFish = "Gädda";
