@@ -550,8 +550,18 @@ today.setMinutes(
     today.getMinutes() -
     today.getTimezoneOffset()
 );
-document.getElementById("date")
-.addEventListener("click", function(){
+const dateField =
+    document.getElementById("date");
+
+dateField.addEventListener("focus", function(){
+
+    if(this.showPicker){
+        this.showPicker();
+    }
+
+});
+
+dateField.addEventListener("click", function(){
 
     if(this.showPicker){
         this.showPicker();
