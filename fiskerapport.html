@@ -552,38 +552,6 @@ today.setMinutes(
     today.getMinutes() -
     today.getTimezoneOffset()
 );
-const dateField =
-    document.getElementById("date");
-
-dateField.addEventListener("focus", function(){
-
-    if(this.showPicker){
-        this.showPicker();
-    }
-
-});
-
-dateField.addEventListener("click", function(){
-
-    if(this.showPicker){
-        this.showPicker();
-    }
-
-});
-document.getElementById("date").value =
-    today.toISOString().split("T")[0];
-
-const dateInput =
-    document.getElementById("date");
-
-dateInput.addEventListener("mousedown", (e) => {
-
-    if(dateInput.showPicker){
-        e.preventDefault();
-        dateInput.showPicker();
-    }
-
-});
     
 for(let i = 0; i <= 50; i++){
 
