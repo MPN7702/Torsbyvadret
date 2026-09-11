@@ -102,11 +102,62 @@ button:hover{
 <label>Gäddor</label>
 <input type="number" id="pike" value="0">
 
+<label>Storlek gädda</label>
+
+<label>
+<input type="checkbox" class="pikeSize" value="Små">
+ Små
+</label>
+
+<label>
+<input type="checkbox" class="pikeSize" value="Medel">
+ Medel
+</label>
+
+<label>
+<input type="checkbox" class="pikeSize" value="Stora">
+ Stora
+</label>
+
 <label>Abborrar</label>
 <input type="number" id="perch" value="0">
 
+<label>Storlek abborre</label>
+
+<label>
+<input type="checkbox" class="perchSize" value="Små">
+ Små
+</label>
+
+<label>
+<input type="checkbox" class="perchSize" value="Medel">
+ Medel
+</label>
+
+<label>
+<input type="checkbox" class="perchSize" value="Stora">
+ Stora
+</label>
+
 <label>Gösar</label>
 <input type="number" id="zander" value="0">
+
+<label>Storlek gös</label>
+
+<label>
+<input type="checkbox" class="zanderSize" value="Små">
+ Små
+</label>
+
+<label>
+<input type="checkbox" class="zanderSize" value="Medel">
+ Medel
+</label>
+
+<label>
+<input type="checkbox" class="zanderSize" value="Stora">
+ Stora
+</label>
 
 <label>Fiskesätt</label>
 
@@ -171,7 +222,20 @@ function saveReport(){
         Array.from(
             document.querySelectorAll(".method:checked")
         ).map(x => x.value);
+const pikeSizes =
+    Array.from(
+        document.querySelectorAll(".pikeSize:checked")
+    ).map(x => x.value);
 
+const perchSizes =
+    Array.from(
+        document.querySelectorAll(".perchSize:checked")
+    ).map(x => x.value);
+
+const zanderSizes =
+    Array.from(
+        document.querySelectorAll(".zanderSize:checked")
+    ).map(x => x.value);
     const report = {
 
         datum:
@@ -188,7 +252,14 @@ function saveReport(){
 
         fiskesatt:
             methods,
+gaddaStorlek:
+    pikeSizes,
 
+abborreStorlek:
+    perchSizes,
+
+gosStorlek:
+    zanderSizes,
         gadda:
             Number(
                 document.getElementById("pike").value
@@ -278,13 +349,16 @@ function showReports(){
 
         🐊 Gädda:
         ${r.gadda}<br>
-
+Storlek:
+${r.gaddaStorlek?.join(", ") || "-"}<br>
         🐟 Abborre:
         ${r.abborre}<br>
-
+Storlek:
+${r.abborreStorlek?.join(", ") || "-"}<br>
         🐟 Gös:
         ${r.gos}<br><br>
-
+Storlek:
+${r.gosStorlek?.join(", ") || "-"}<br>
         🎣 Betyg:
         ${r.betyg}<br><br>
 
