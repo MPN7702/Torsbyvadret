@@ -1296,15 +1296,15 @@ else if(weatherCode === 3)
 if(Number(windSpeed) < 2)
     pikeScore -= 2;
 
-else if(Number(windspeed) >= 2 &&
-        Number(windS*eed) < 4)
-    pikeScore += 2
+else if(Number(windSpeed) >= 2 &&
+        Number(windSpeed) < 4)
+    pikeScore += 2;
 
-else if(Number(windSpeed) >= 4 &
-        Number*windSpeed) <= 7)
-    pikeScore += *;
+else if(Number(windSpeed) >= 4 &&
+        Number(windSpeed) <= 7)
+    pikeScore += 3;
 
-else if(Number(windSpeed) > 7 &*
+else if(Number(windSpeed) > 7 &&
         Number(windSpeed) <= 9)
     pikeScore += 1;
     /* Vindriktning Gädda */
@@ -1392,16 +1392,16 @@ else if(weatherCode === 3)
 if(Number(windSpeed) < 2)
     perchScore -= 2;
 
-else if(Number(win*Speed) >= 2 &&
-        Number(wind*peed) < 4)
+else if(Number(windSpeed) >= 2 &&
+        Number(windSpeed) < 4)
     perchScore += 2;
 
 else if(Number(windSpeed) >= 4 &&
-  *     Number(windSpeed) <= 7)
-    p*rchScore += 3;
+        Number(windSpeed) <= 7)
+    perchScore += 3;
 
-else if(Number(win*Speed) > 7 &&
-        Number(windS*eed) <= 9)
+else if(Number(windSpeed) > 7 &&
+        Number(windSpeed) <= 9)
     perchScore += 1;
             /* Vindriktning Abborre */
 
@@ -1498,18 +1498,19 @@ if(weatherCode === 2)
 
 if(weatherCode === 3)
     zanderScore += 3;
-/* Vin* Gös */
+
+/* Vind Gös */
 
 if(Number(windSpeed) < 2)
-    zanderScore -=*1;
+    zanderScore -= 1;
 
-else if(Number(windSpeed) >= 2*&&
+else if(Number(windSpeed) >= 2 &&
         Number(windSpeed) < 5)
-*   zanderScore += 1;
+    zanderScore += 1;
 
-else if(Numb*r(windSpeed) >= 5 &&
-        Numbe*(windSpeed) <= 8)
-    z*nderScore += 2;
+else if(Number(windSpeed) >= 5 &&
+        Number(windSpeed) <= 8)
+    zanderScore += 2;
             /* Vindriktning Gös */
 
 const zanderWindDir =
@@ -1734,12 +1735,7 @@ ${tempFlag
 ${windSpeed} m/s
 ${getWindArrow(windDirection)}
 ${getWindDirection(windDirection)}
-🧭 Vindriktning:
-<strong>
-${getWindDirection(windDirection)}
-</strong>
-<br>
-(${Math.round(windDirection)}°)
+
 </strong>
 </span>
 ${windFlag}
@@ -1979,7 +1975,6 @@ function getFishingStars(score){
         return "★★";
 
     return "★";
-}
 }
     function getIndexForTime(hourly, targetTime){
 
