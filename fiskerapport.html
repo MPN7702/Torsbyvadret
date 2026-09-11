@@ -438,32 +438,32 @@ ${r.gos}
 
         <strong>Prognosdata</strong><br>
 
-        Gädda:
-        ${r.prognos?.pikeScore ?? "-"}<br>
+        Temperatur:
 
-        Abborre:
-        ${r.prognos?.perchScore ?? "-"}<br>
-
-        Gös:
-        ${r.prognos?.zanderScore ?? "-"}<br>
-
-Väder:
-${r.prognos?.weather ?? "-"}<br>
+${r.prognos?.tempMin ?? "-"}°C -
+${r.prognos?.tempMax ?? "-"}°C<br>
 
 Lufttryck:
 ${r.prognos?.pressure ?? "-"} hPa<br>
 
-        Vind:
-        ${r.prognos?.wind ?? "-"} m/s<br>
+Vind:
+${r.prognos?.wind ?? "-"} m/s<br>
 
-        Regn:
-        ${r.prognos?.rain ?? "-"} mm<br>
+Kastvind:
+${r.prognos?.windGust ?? "-"} m/s<br>
 
-        Vattentemperatur:
-        ${r.prognos?.waterTemp ?? "-"} °C<br>
+Regn:
+${r.prognos?.rain ?? "-"} mm<br>
 
-        Prognossäkerhet:
-        ${r.prognos?.confidence ?? "-"}<br><br>
+Väderkod:
+${r.prognos?.weathercode ?? "-"}<br>
+
+Soluppgång:
+${r.prognos?.sunrise ?? "-"}<br>
+
+Solnedgång:
+${r.prognos?.sunset ?? "-"}<br><br>
+``
 
         📝 Kommentar:<br>
         ${r.kommentar || "-"}<br>
