@@ -1241,9 +1241,6 @@ else if(wt >= 10 && wt < 12)
 else if(wt > 18 && wt <= 20)
     pikeScore += 3;
 
-else if(wt < 5)
-    pikeScore -= 3;
-
 else if(wt > 21)
     pikeScore -= 6;
 /* Årstid Gädda */
@@ -1269,13 +1266,6 @@ else if(
     pikeScore += 5;
 }
 
-else if(
-    forecastMonth >= 12 ||
-    forecastMonth <= 2
-)
-{
-    pikeScore -= 3;
-}
 
 /* Lufttryck */
 
@@ -1347,9 +1337,6 @@ else if(wt >= 12 && wt < 15)
 else if(wt > 22 && wt <= 25)
     perchScore += 4;
 
-else if(wt < 10)
-    perchScore -= 4;
-
 /* Årstid Abborre */
 
 if(
@@ -1358,14 +1345,6 @@ if(
 )
 {
     perchScore += 4;
-}
-
-else if(
-    forecastMonth <= 3 ||
-    forecastMonth === 12
-)
-{
-    perchScore -= 3;
 }
 
 /* Bästa fisketider */
