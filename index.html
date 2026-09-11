@@ -1466,7 +1466,7 @@ if(weatherCode === 3)
     zanderScore += 3;
 /* Vind Gös */
 
-if(Number(windSpeed) < 1)
+if(Number(windSpeed) < 2)
     zanderScore -= 1;
 
 else if(Number(windSpeed) >= 2 &&
@@ -1475,7 +1475,7 @@ else if(Number(windSpeed) >= 2 &&
 
 else if(Number(windSpeed) >= 5 &&
         Number(windSpeed) <= 8)
-    zanderScore += 1;
+    zanderScore += 2;
 /* Fredningstid gös i Fryken 15 maj till 15 juni */
 
 const dayOfMonth =
@@ -1577,29 +1577,6 @@ let bestFish = "Gädda";
 let bestScore = pikeScore;
 if(i === 0){
 
-    window.todayFishingPrediction = {
-
-        datum: currentDay,
-
-        pressure: pressure,
-
-        wind: windSpeed,
-
-        rain: rainAmount,
-
-        waterTemp: window.waterTemp,
-
-        pikeScore: pikeScore,
-
-        perchScore: perchScore,
-
-        zanderScore: zanderScore,
-
-        confidence: confidenceText,
-
-        weather: weatherMap[weatherCode]
-
-    };
 
     localStorage.setItem(
         "latestFishingPrediction",
