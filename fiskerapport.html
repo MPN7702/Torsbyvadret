@@ -1,1 +1,147 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>🎣 Fiskerapport</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#0f172a;
+    color:#e2e8f0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:#1e293b;
+    padding:20px;
+    border-radius:12px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:8px;
+    border:none;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#22c55e;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#16a34a;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎣 Fiskerapport</h1>
+
+<label>Datum</label>
+<input type="date" id="date">
+
+<label>Plats</label>
+<input type="text" id="place">
+
+<label>Fisketid</label>
+<input type="text" id="time">
+
+<label>Gäddor</label>
+<input type="number" id="pike" value="0">
+
+<label>Abborrar</label>
+<input type="number" id="perch" value="0">
+
+<label>Gösar</label>
+<input type="number" id="zander" value="0">
+
+<label>Fiskeupplevelse</label>
+<select id="rating">
+    <option>Mycket dåligt</option>
+    <option>Dåligt</option>
+    <option>Normalt</option>
+    <option>Bra</option>
+    <option>Mycket bra</option>
+</select>
+
+<label>Kommentar</label>
+<textarea id="comment"></textarea>
+
+<button onclick="saveReport()">
+Spara rapport
+</button>
+
+</div>
+
+<script>
+
+function saveReport(){
+
+    const report = {
+
+        datum:
+            document.getElementById("date").value,
+
+        plats:
+            document.getElementById("place").value,
+
+        fisketid:
+            document.getElementById("time").value,
+
+        gadda:
+            document.getElementById("pike").value,
+
+        abborre:
+            document.getElementById("perch").value,
+
+        gos:
+            document.getElementById("zander").value,
+
+        betyg:
+            document.getElementById("rating").value,
+
+        kommentar:
+            document.getElementById("comment").value
+
+    };
+
+    let reports =
+        JSON.parse(
+            localStorage.getItem("fishingReports")
+            || "[]"
+        );
+
+    reports.push(report);
+
+    localStorage.setItem(
+        "fishingReports",
+        JSON.stringify(reports)
+    );
+
+    alert("✅ Rapport sparad");
+
+}
+
+</script>
+
+</body>
+</html>
