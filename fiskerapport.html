@@ -72,10 +72,12 @@ button:hover{
     padding-top:15px;
     margin-top:15px;
 }
+
 .method{
     width:auto;
     margin-right:8px;
 }
+
 </style>
 </head>
 
@@ -110,44 +112,24 @@ button:hover{
 
 <div style="margin-bottom:15px;">
 
-<label>
-<input type="checkbox" class="method" value="Spinnfiske">
- Spinnfiske
-</label><br>
+<label><input type="checkbox" class="method" value="Spinnfiske"> Spinnfiske</label>
 
-<label>
-<input type="checkbox" class="method" value="Jigg">
- Jigg
-</label><br>
+<label><input type="checkbox" class="method" value="Jigg"> Jigg</label>
 
-<label>
-<input type="checkbox" class="method" value="Trolling">
- Trolling
-</label><br>
+<label><input type="checkbox" class="method" value="Trolling"> Trolling</label>
 
-<label>
-<input type="checkbox" class="method" value="Mete">
- Mete
-</label><br>
+<label><input type="checkbox" class="method" value="Mete"> Mete</label>
 
-<label>
-<input type="checkbox" class="method" value="Fluga">
- Fluga
-</label><br>
+<label><input type="checkbox" class="method" value="Fluga"> Fluga</label>
 
-<label>
-<input type="checkbox" class="method" value="Vertikal">
- Vertikal
-</label><br>
+<label><input type="checkbox" class="method" value="Vertikal"> Vertikal</label>
 
-<label>
-<input type="checkbox" class="method" value="Annat">
- Annat
-</label>
+<label><input type="checkbox" class="method" value="Annat"> Annat</label>
 
 </div>
 
 <label>Fiskeupplevelse</label>
+
 <select id="rating">
     <option>Mycket dåligt</option>
     <option>Dåligt</option>
@@ -157,6 +139,7 @@ button:hover{
 </select>
 
 <label>Kommentar</label>
+
 <textarea id="comment"></textarea>
 
 <button onclick="saveReport()">
@@ -181,10 +164,12 @@ function saveReport(){
                 "latestFishingPrediction"
             ) || "{}"
         );
-const methods =
-    Array.from(
-        document.querySelectorAll(".method:checked")
-    ).map(x => x.value);
+
+    const methods =
+        Array.from(
+            document.querySelectorAll(".method:checked")
+        ).map(x => x.value);
+
     const report = {
 
         datum:
@@ -193,14 +178,15 @@ const methods =
         plats:
             document.getElementById("place").value,
 
-startTid:
-    document.getElementById("startTime").value,
+        startTid:
+            document.getElementById("startTime").value,
 
-slutTid:
-    document.getElementById("endTime").value,
+        slutTid:
+            document.getElementById("endTime").value,
 
-fiskesatt:
-    methods,
+        fiskesatt:
+            methods,
+
         gadda:
             Number(
                 document.getElementById("pike").value
@@ -224,7 +210,6 @@ fiskesatt:
 
         prognos:
             prediction
-
     };
 
     let reports =
@@ -242,7 +227,6 @@ fiskesatt:
     );
 
     alert("✅ Rapport sparad");
-
 }
 
 function showReports(){
@@ -259,6 +243,7 @@ function showReports(){
     reports.slice().reverse().forEach(r => {
 
         html += `
+
         <div class="report-card">
 
         <strong>${r.datum || "-"}</strong><br>
@@ -266,10 +251,11 @@ function showReports(){
         📍 Plats:
         ${r.plats || "-"}<br>
 
-🕓 Fisketid:
-${r.startTid || "-"} - ${r.slutTid || "-"}<br><br>
-🎣 Fiskesätt:
-${r.fiskesatt?.join(", ") || "-"}<br><br>
+        🕓 Fisketid:
+        ${r.startTid || "-"} - ${r.slutTid || "-"}<br><br>
+
+        🎣 Fiskesätt:
+        ${r.fiskesatt?.join(", ") || "-"}<br><br>
 
         🐊 Gädda:
         ${r.gadda}<br>
@@ -313,12 +299,11 @@ ${r.fiskesatt?.join(", ") || "-"}<br><br>
         ${r.kommentar || "-"}<br>
 
         </div>
-        `;
 
+        `;
     });
 
     document.getElementById("reports").innerHTML = html;
-
 }
 
 document.getElementById("date").value =
