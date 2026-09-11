@@ -107,7 +107,7 @@ button:hover{
 <label>Datum</label>
 <input type="date" id="date">
 
-<label>Plats</label>
+<label>Fiskevatten</label>
 <input type="text" id="place">
 
 <label>Starttid</label>
@@ -253,7 +253,8 @@ const zanderSizes =
             document.getElementById("date").value,
 
         plats:
-            document.getElementById("place").value,
+fiskevatten:
+    document.getElementById("place").value,
 
         startTid:
             document.getElementById("startTime").value,
@@ -349,8 +350,8 @@ function showReports(){
 
         <strong>${r.datum || "-"}</strong><br>
 
-        📍 Plats:
-        ${r.plats || "-"}<br>
+🌊 Fiskevatten:
+${r.fiskevatten || "-"}<br>
 
         🕓 Fisketid:
         ${r.startTid || "-"} - ${r.slutTid || "-"}<br><br>
