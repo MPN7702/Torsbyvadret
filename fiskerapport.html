@@ -280,13 +280,24 @@ window.getDocs = getDocs;
 window.collection = collection;
 
 window.saveReport = async function(){
+const selectedDate =
+    document.getElementById("date").value;
 
-    const prediction =
-        JSON.parse(
-            localStorage.getItem(
-                "latestFishingPrediction"
-            ) || "{}"
-        );
+const selectedPlace =
+    document.getElementById("place").value;
+
+const response =
+    await fetch(
+        `https://fiske-predictions.mr-magoo21.workers.dev?date=${selectedDate}`
+    );
+
+const weatherData =
+    await response.json();
+
+const prediction =
+    weatherData.orter?.[
+        selectedPlace
+    ] || {};
 
     const methods =
         Array.from(
