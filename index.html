@@ -1562,29 +1562,32 @@ if(zanderScore > bestZanderScore){
 }
 if(i === 0){
 
-    const predictionData = {
+const predictionData = {
 
-        datum: currentDay,
+    datum: currentDay,
 
-        weather: weatherMap[weatherCode],
+    savedAt: new Date().toISOString(),
 
-        pressure: pressure,
+    weather: weatherMap[weatherCode],
 
-        wind: windSpeed,
+    pressure: pressure,
 
-        rain: rainAmount,
+    wind: windSpeed,
 
-        waterTemp: window.waterTemp,
+    rain: rainAmount,
 
-        pikeScore: pikeScore,
+    waterTemp: window.waterTemp,
 
-        perchScore: perchScore,
+    pikeScore: pikeScore,
 
-        zanderScore: zanderScore,
+    perchScore: perchScore,
 
-        confidence: confidenceText
+    zanderScore: zanderScore,
 
-    };
+    confidence: confidenceText
+
+};
+``
 
     try {
 
