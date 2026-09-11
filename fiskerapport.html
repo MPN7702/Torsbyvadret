@@ -89,12 +89,84 @@ button:hover{
 <button onclick="saveReport()">
 Spara rapport
 </button>
+<br><br>
 
+<button onclick="showReports()">
+📊 Visa rapporter
+</button>
+
+<div id="reports"></div>
 </div>
+function showReports(){
 
+    const reports =
+        JSON.parse(
+            localStorage.getItem(
+                "fishingReports"
+            ) || "[]"
+        );
+
+    let html = "";
+
+    reports.reverse().forEach(r => {
+
+        html += `
+        <hr>
+
+        <b>${r.datum}</b><br>
+
+        Plats:
+        ${r.plats}<br>
+
+        Resultat:
+        Gädda ${r.gadda},
+        Abborre ${r.abborre},
+        Gös ${r.gos}<br>
+
+        Betyg:
+        ${r.betyg}<br>
+
+        Prognos gädda:
+        ${r.prognos?.pikeScore ?? "-"}<br>
+
+        Prognos abborre:
+        ${r.prognos?.perchScore ?? "-"}<br>
+
+        Prognos gös:
+        ${r.prognos?.zanderScore ?? "-"}<br>
+
+        Lufttryck:
+        ${r.prognos?.pressure ?? "-"}<br>
+
+        Vind:
+        ${r.prognos?.wind ?? "-"} m/s<br>
+
+        Regn:
+        ${r.prognos?.rain ?? "-"} mm<br>
+
+        Vattentemp:
+        ${r.prognos?.waterTemp ?? "-"} °C<br>
+
+        Kommentar:
+        ${r.kommentar}<br>
+        `;
+
+    });
+
+    document.getElementById("reports")
+        .innerHTML = html;
+
+}
 <script>
 
 function saveReport(){
+
+    const prediction =
+        JSON.parse(
+            localStorage.getItem(
+                "latestFishingPrediction"
+            ) || "{}"
+        );
 
     const report = {
 
@@ -108,21 +180,47 @@ function saveReport(){
             document.getElementById("time").value,
 
         gadda:
-            document.getElementById("pike").value,
+            Number(
+                document.getElementById("pike").value
+            ),
 
         abborre:
-            document.getElementById("perch").value,
+            Number(
+                document.getElementById("perch").value
+            ),
 
         gos:
-            document.getElementById("zander").value,
+            Number(
+                document.getElementById("zander").value
+            ),
 
         betyg:
             document.getElementById("rating").value,
 
         kommentar:
-            document.getElementById("comment").value
+            document.getElementById("comment").value,
+
+        prognos: prediction
 
     };
+
+    let reports =
+        JSON.parse(
+            localStorage.getItem(
+                "fishingReports"
+            ) || "[]"
+        );
+
+    reports.push(report);
+
+    localStorage.setItem(
+        "fishingReports",
+        JSON.stringify(reports)
+    );
+
+    alert("✅ Rapport sparad");
+
+}
 
     let reports =
         JSON.parse(
