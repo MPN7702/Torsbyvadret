@@ -1522,6 +1522,49 @@ if(zanderScore > bestZanderScore){
     bestZanderDay = weekday;
 
 }
+            if(i === 0){
+
+    window.todayFishingPrediction = {
+
+        datum: currentDay,
+
+        weather:
+            weatherMap[weatherCode],
+
+        pressure:
+            pressure,
+
+        wind:
+            windSpeed,
+
+        rain:
+            rainAmount,
+
+        waterTemp:
+            window.waterTemp,
+
+        pikeScore:
+            pikeScore,
+
+        perchScore:
+            perchScore,
+
+        zanderScore:
+            zanderScore,
+
+        confidence:
+            confidenceText
+
+    };
+
+    localStorage.setItem(
+        "latestFishingPrediction",
+        JSON.stringify(
+            window.todayFishingPrediction
+        )
+    );
+
+}
 let bestFish = "Gädda";
 let bestScore = pikeScore;
 if(i === 0){
