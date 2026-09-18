@@ -1306,7 +1306,9 @@ else if(Number(windSpeed) > 7 &&
     /* Vindriktning Gädda */
 
 const windDir =
-    getWindDirection(windDirection);
+    getWindDirection(
+        (windDirection + 180) % 360
+    );
 
 if(windDir === "SV")
     pikeScore += 4;
