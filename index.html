@@ -1551,15 +1551,16 @@ if(stableWeather){
 }
 
 }
-            console.log({
-    waterTemp: wt,
+console.log({
+    waterTemp: Number(window.waterTemp),
     pikeScore,
     perchScore,
     zanderScore,
     pressure,
     windSpeed,
     windDirection: getWindDirection(windDirection),
-    weatherCode
+    weatherCode,
+    stableWeather
 });
 let bestScore = pikeScore;
 
