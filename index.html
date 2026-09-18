@@ -1805,7 +1805,7 @@ try {
         await response.json();
 
 window.waterTemp =
-    Number(data.ovre_fryken);
+    Number(data.ovre_fryken).toFixed(1);
 
 } catch (error) {
 
@@ -2346,7 +2346,7 @@ async function startDashboard(){
             await response.json();
 
 window.waterTemp =
-    Number(data.ovre_fryken);
+    Number(data.ovre_fryken).toFixed(1);
 
     } catch (error) {
 
