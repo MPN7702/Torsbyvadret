@@ -29,12 +29,15 @@ jobs:
       - name: Generate weather.json
         run: |
           python update_weather.py
-          - name: Generate water_temp.json
-  run: |
-    python test_vatten.py
+
+      - name: Generate water_temp.json
+        run: |
+          python test_vatten.py
+
       - name: Kontrollera JSON
         run: |
           python3 -m json.tool weather.json > /dev/null
+          python3 -m json.tool water_temp.json > /dev/null
 
       - name: Commit weather.json
         run: |
@@ -46,4 +49,3 @@ jobs:
           git commit -m "Update weather cache" || true
 
           git push
-      
