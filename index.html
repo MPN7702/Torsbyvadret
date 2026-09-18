@@ -1393,7 +1393,9 @@ else if(Number(windSpeed) > 7 &&
             /* Vindriktning Abborre */
 
 const perchWindDir =
-    getWindDirection(windDirection);
+    getWindDirection(
+        (windDirection + 180) % 360
+    );
 
 if(perchWindDir === "SV")
     perchScore += 3;
@@ -1501,7 +1503,9 @@ else if(Number(windSpeed) >= 5 &&
             /* Vindriktning Gös */
 
 const zanderWindDir =
-    getWindDirection(windDirection);
+    getWindDirection(
+        (windDirection + 180) % 360
+    );
 
 if(zanderWindDir === "SV")
     zanderScore += 3;
