@@ -1558,7 +1558,9 @@ console.log({
     zanderScore,
     pressure,
     windSpeed,
-    windDirection: getWindDirection(windDirection),
+    windDirectionRaw: windDirection,
+    windDirectionFish: getWindDirection(windDirection),
+    windDirectionShown: getWindDirection((windDirection + 180) % 360),
     weatherCode,
     stableWeather
 });
