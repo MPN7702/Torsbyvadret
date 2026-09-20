@@ -339,9 +339,6 @@ const response =
 
 const weatherData =
     await response.json();
-alert(
-    JSON.stringify(weatherData, null, 2)
-);
 
 let weatherLocation = selectedPlace;
 
@@ -365,11 +362,6 @@ const prediction =
     weatherData.orter?.[
         weatherLocation
     ] || {};
-    console.log(
-    "Prediction:",
-    prediction
-);
-
 
 const pikeSizes =
     Array.from(
