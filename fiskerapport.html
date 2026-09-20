@@ -339,6 +339,9 @@ const response =
 
 const weatherData =
     await response.json();
+alert(
+    JSON.stringify(weatherData, null, 2)
+);
 
 const prediction =
     weatherData.orter?.[
