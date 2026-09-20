@@ -343,9 +343,27 @@ alert(
     JSON.stringify(weatherData, null, 2)
 );
 
+let weatherLocation = selectedPlace;
+
+if (
+    selectedPlace === "Fryken" ||
+    selectedPlace === "Vassjön" ||
+    selectedPlace === "Letten" ||
+    selectedPlace === "Mangen" ||
+    selectedPlace === "Grängen"
+) {
+    weatherLocation = "Torsby";
+}
+
+if (
+    selectedPlace === "Höljessjön"
+) {
+    weatherLocation = "Höljes";
+}
+
 const prediction =
     weatherData.orter?.[
-        selectedPlace
+        weatherLocation
     ] || {};
     console.log(
     "Prediction:",
