@@ -365,6 +365,8 @@ let cache;
 if(window.cachedWeather){
 
     cache = window.cachedWeather;
+    console.log("Current location:", currentLocation);
+    console.log("Weather exists:", cache?.[currentLocation]);
 
 }else{
 
@@ -380,6 +382,7 @@ if(window.cachedWeather){
 
 const data =
     cache?.[currentLocation]?.weekly;
+        console.log("Weekly:", data);
         
 if (!data || !data.daily)
     return;
@@ -1896,6 +1899,10 @@ async function loadWeather(source){
 
 source.data =
     window.cachedWeather?.[currentLocation]?.[source.model];
+        console.log(
+    source.model,
+    source.data
+);
 
 
     }
