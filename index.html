@@ -797,7 +797,13 @@ const windDirection =
     * 180 / Math.PI
     + 360
 ) % 360;
+let windClass = "";
 
+if(Number(windSpeed) >= 10)
+    windClass = "wind-high";
+
+else if(Number(windSpeed) >= 5)
+    windClass = "wind-mid";
 
 let windModelValues = [];
 let rainModelValues = [];
