@@ -1887,7 +1887,7 @@ async function loadWeather(source){
         if(!window.cachedWeather){
 
             const response =
-                await fetch("./weather.json");
+                  await fetch("https://vadercentertorsby.se/weather.json");;
 
             window.cachedWeather =
                 await response.json();
@@ -2360,7 +2360,7 @@ async function startDashboard(){
     try {
 
         const response =
-            await fetch("water_temp.json");
+              await fetch("https://vadercentertorsby.se/water_temp.json");
 
         const data =
             await response.json();
