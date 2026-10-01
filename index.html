@@ -1203,32 +1203,11 @@ const weatherTextColored =
     );
 
 let fishingAllowed = true;
-let fishingReason = "";
-
-if(Number(rainAmount) > 15){
-
-    fishingAllowed = false;
-    fishingReason = "Mycket kraftigt regn";
-
-}
-else if(Number(windSpeed) > 12){
-
-    fishingAllowed = false;
-    fishingReason = "Mycket hård vind";
-
-}
-else if(Number(windGust) > 16){
-
-    fishingAllowed = false;
-    fishingReason = "Mycket kraftiga kastvindar";
-
-}
 
 let pikeScore = 0;
 let perchScore = 0;
 let zanderScore = 0;
 
-if(fishingAllowed){
 const wt = Number(window.waterTemp);
 
 if(isNaN(wt)){
@@ -1654,16 +1633,7 @@ Stjärnor baseras på:
 `;
 
 }
-else if(!fishingAllowed){
 
-    fishingText = `
-    ${waterTempText}
-        🎣 Fiske: ❌ Olämpligt
-        <br>
-        ⚠️ ${fishingReason}
-    `;
-
-}
 else{
 
     fishingText = `
