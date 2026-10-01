@@ -1260,59 +1260,67 @@ if(
     forecastMonth === 5
 )
 {
-    pikeScore += 4;
+    pikeScore += 2;
 }
 
 else if(forecastMonth === 9)
 {
+    pikeScore += 2;
+}
+
+else if(forecastMonth === 10)
+{
     pikeScore += 3;
 }
 
-else if(
-    forecastMonth === 10 ||
-    forecastMonth === 11
-)
+else if(forecastMonth === 11)
 {
-    pikeScore += 5;
+    pikeScore += 2;
 }
 
 
 /* Lufttryck */
 
 if(Number(pressure) >= 995 && Number(pressure) <= 1010)
-    pikeScore += 2;
+    pikeScore += 1;
 
 if(Number(pressure) < 985)
-    pikeScore -= 2;
+    pikeScore -= 1;
 
 /* Molnighet Gädda */
 
 if(weatherCode === 0)
     pikeScore -= 2; // Klart
 
+if(weatherCode === 0)
+    pikeScore -= 4; // Klart
+
 else if(weatherCode === 1)
-    pikeScore -= 1; // Mest klart
+    pikeScore -= 2; // Mest klart
 
 else if(weatherCode === 2)
-    pikeScore += 1; // Delvis molnigt
+    pikeScore += 2; // Delvis molnigt
 
 else if(weatherCode === 3)
-    pikeScore += 3; // Mulet
+    pikeScore += 5; // Mulet
 /* Vind Gädda */
 
-if(Number(windSpeed) < 2)
-    pikeScore -= 2;
+if(Number(windSpeed) < 1)
+    pikeScore -= 6;
 
-else if(Number(windSpeed) >= 2 &&
-        Number(windSpeed) < 4)
+else if(Number(windSpeed) < 2)
+    pikeScore -= 3;
+
+else if(Number(windSpeed) < 4)
     pikeScore += 2;
 
-else if(Number(windSpeed) >= 4 &&
-        Number(windSpeed) <= 7)
+else if(Number(windSpeed) <= 8)
+    pikeScore += 5;
+
+else if(Number(windSpeed) <= 12)
     pikeScore += 3;
 
-else if(Number(windSpeed) > 7 &&
-        Number(windSpeed) <= 9)
+else
     pikeScore += 1;
     /* Vindriktning Gädda */
 
