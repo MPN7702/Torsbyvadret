@@ -1290,16 +1290,16 @@ if(Number(pressure) < 985)
 /* Molnighet Gädda */
 
 if(weatherCode === 0)
-    pikeScore -= 4; // Klart
+    pikeScore -= 5;
 
 else if(weatherCode === 1)
-    pikeScore -= 2; // Mest klart
+    pikeScore -= 3;
 
 else if(weatherCode === 2)
-    pikeScore += 2; // Delvis molnigt
+    pikeScore += 2;
 
 else if(weatherCode === 3)
-    pikeScore += 5; // Mulet
+    pikeScore += 5;
 /* Vind Gädda */
 
 if(Number(windSpeed) < 1)
