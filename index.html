@@ -1202,8 +1202,6 @@ const weatherTextColored =
         '<span style="color:#ef4444;">⚡ Åska</span>'
     );
 
-let fishingAllowed = true;
-
 let pikeScore = 0;
 let perchScore = 0;
 let zanderScore = 0;
@@ -1586,7 +1584,7 @@ const waterTempText = `
 
 let fishingText = "";
   
-if(bestScore < 10 && fishingAllowed){
+if(bestScore < 10){
 
     fishingText = `
 ${waterTempText}
