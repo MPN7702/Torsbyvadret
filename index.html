@@ -1074,7 +1074,9 @@ const sortedWeatherCodes =
         .map(x => Number(x[0]));
 
 const weatherCode =
-    sortedWeatherCodes[0] ?? 0;
+    Number.isFinite(sortedWeatherCodes[0])
+        ? sortedWeatherCodes[0]
+        : 0;
 const weatherMap = {
 
     0: "☀️ Klart",
@@ -1148,7 +1150,12 @@ if(idx === -1)
 const code =
     model.data.hourly.weathercode?.[idx];
 
-            if(code !== undefined){
+if(
+    typeof code !== "number" ||
+    Number.isNaN(code)
+){
+    return;
+}
 
 votes[code] =
     (votes[code] ?? 0)
