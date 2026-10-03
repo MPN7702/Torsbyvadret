@@ -1402,25 +1402,39 @@ else
     perchScore -= 5;
 
 
-/* Trycktrend */
+/* Trycktrend Abborre */
 
-if(i > 0){
+if(i >= 2){
 
-    const pressureDiff =
-        Number(pressure) -
+    const pressureDiff1 =
+        pressureHistory[i]
+        -
         pressureHistory[i - 1];
 
-    if(pressureDiff >= 2)
+    const pressureDiff2 =
+        pressureHistory[i - 1]
+        -
+        pressureHistory[i - 2];
+
+    if(
+        pressureDiff1 >= 0 &&
+        pressureDiff2 >= 0
+    ){
         perchScore += 3;
-
-    else if(pressureDiff >= 0)
-        perchScore += 1;
-
-    else if(pressureDiff <= -4)
+    }
+    else if(
+        pressureDiff1 <= -2 &&
+        pressureDiff2 <= -2
+    ){
         perchScore -= 5;
+    }
+    else if(
+        pressureDiff1 <= -1 ||
+        pressureDiff2 <= -1
+    ){
+        perchScore -= 2;
+    }
 
-    else if(pressureDiff <= -2)
-        perchScore -= 3;
 }
 
 
