@@ -1380,90 +1380,115 @@ else if(windDir === "NO")
 /* =======================
    ABBORRE
 ======================= */
-/* Vattentemperatur Abborre */
-
-if(wt >= 15 && wt <= 22)
-    perchScore += 6;
-
-else if(wt >= 12 && wt < 15)
-    perchScore += 4;
-
-else if(wt > 22 && wt <= 25)
-    perchScore += 4;
-
-/* Årstid Abborre */
-
-if(
-    forecastMonth >= 6 &&
-    forecastMonth <= 11
-)
-{
-    perchScore += 4;
-}
-
-/* Bästa fisketider */
 
 /* Lufttryck */
 
-if(Number(pressure) >= 1005 && Number(pressure) <= 1020)
+if(Number(pressure) >= 1020)
+    perchScore += 5;
+
+else if(Number(pressure) >= 1015)
+    perchScore += 4;
+
+else if(Number(pressure) >= 1010)
     perchScore += 3;
 
-else if(Number(pressure) < 990)
+else if(Number(pressure) >= 1000)
+    perchScore += 1;
+
+else if(Number(pressure) >= 995)
     perchScore -= 2;
 
-/* Klart väder */
+else
+    perchScore -= 5;
+
+
+/* Trycktrend */
+
+if(i > 0){
+
+    const pressureDiff =
+        Number(pressure) -
+        pressureHistory[i - 1];
+
+    if(pressureDiff >= 2)
+        perchScore += 3;
+
+    else if(pressureDiff >= 0)
+        perchScore += 1;
+
+    else if(pressureDiff <= -4)
+        perchScore -= 5;
+
+    else if(pressureDiff <= -2)
+        perchScore -= 3;
+}
+
+
+/* Molnighet */
 
 if(weatherCode === 0)
-    perchScore += 2;     // Klart
+    perchScore += 1;
 
 else if(weatherCode === 1)
-    perchScore += 2;     // Mest klart
-
-else if(weatherCode === 2)
-    perchScore += 3;     // Delvis molnigt
-
-else if(weatherCode === 3)
-    perchScore += 3;     // Mulet
-/* Vind Abborre */
-
-if(Number(windSpeed) < 2)
-    perchScore -= 2;
-
-else if(Number(windSpeed) >= 2 &&
-        Number(windSpeed) < 4)
     perchScore += 2;
 
-else if(Number(windSpeed) >= 4 &&
-        Number(windSpeed) <= 7)
+else if(weatherCode === 2)
     perchScore += 3;
 
-else if(Number(windSpeed) > 7 &&
-        Number(windSpeed) <= 9)
+else if(weatherCode === 3)
+    perchScore += 3;
+
+
+/* Vind */
+
+if(Number(windSpeed) < 1)
+    perchScore += 0;
+
+else if(Number(windSpeed) < 3)
     perchScore += 1;
-            /* Vindriktning Abborre */
+
+else if(Number(windSpeed) <= 9)
+    perchScore += 4;
+
+else
+    perchScore += 0;
+
+
+/* Vindriktning */
 
 const perchWindDir =
     getWindDirection(
         (windDirection + 180) % 360
     );
 
-if(perchWindDir === "SV")
-    perchScore += 3;
-
-else if(perchWindDir === "V")
+if(
+    perchWindDir === "SV" ||
+    perchWindDir === "S" ||
+    perchWindDir === "V"
+)
+{
     perchScore += 2;
+}
+else if(
+    perchWindDir === "N" ||
+    perchWindDir === "NO" ||
+    perchWindDir === "O"
+)
+{
+    perchScore -= 1;
+}
 
-else if(perchWindDir === "S")
-    perchScore += 2;
 
-else if(perchWindDir === "SO")
-    perchScore += 2;
+/* Stabilt väder */
 
-else if(perchWindDir === "NV")
-    perchScore += 1;
-
-else if(perchWindDir === "N")
-    perchScore += 1;
+if(stableWeather)
+{
+    perchScore += 6;
+}
+else
+{
+    perchScore -= 4;
+}
 /* =======================
    GÖS
 ======================= */
