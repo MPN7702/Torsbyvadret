@@ -781,6 +781,10 @@ const windSpeed =
           ).toFixed(1)
         : "--";
 
+windHistory.push(
+    Number(windSpeed)
+);
+
 const windGust =
     windWeightTotal > 0
         ? (
